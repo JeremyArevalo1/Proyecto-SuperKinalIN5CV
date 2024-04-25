@@ -19,8 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import org.jeremyarevalo.dao.Conexion;
 import org.jeremyarevalo.model.Cliente;
+import org.jeremyarevalo.model.TicketSoporte;
 import org.jeremyarevalo.system.Main;
 
 /**
@@ -42,6 +45,10 @@ public class MenuTicketSoporteController implements Initializable {
     ComboBox cmbEstatus, cmbCliente;
     @FXML
     Button btnCancelar2;
+    @FXML
+    TableView tblTickets;
+    @FXML
+    TableColumn colTicketId, colDescripcion, colEstatus, colCliente, colFactura;
     
     @FXML
     public void handleButtonAction(ActionEvent event){
@@ -50,9 +57,61 @@ public class MenuTicketSoporteController implements Initializable {
         }
     }
     
+    public void vaciarCampos(){
+        tfTicketId.clear();
+        taDescripcion.clear();
+        cmbEstatus.getSelectionModel().
+    }
+    
+    public void cargarDatos(){
+        tblTickets.setItems(listarTickets());
+        colTicketId.setCellValueFactory
+    }
+    
+    public void cargarDatosEditar(){
+        TicketSoporte ts = (TicketSoporte)tblTickets.getSelectionModel().getSelectedItem();
+        if(ts != null){
+            tfTicketId.setText(Integer.toString(ts.getTicketSoporteId()));
+            taDescripcion.setText(ts.getDescripcionTicket());
+            cmbEstatus.getSelectionModel().select(0);
+            cmbCliente.getSelectionModel().select(obtenerIndexCliente());
+            
+        }
+    }
+    
+    public int obtenerIndexCliente(){
+        int index = 0;
+        forint(int 1 = 0 ; <= cmbCliente.getItems().size() ; i++){
+        String clienteCmb = cmbCliente.getItems().select(0);
+            
+        }
+    }
+    
     public void cargarCmdEstatus(){
         cmbEstatus.getItems().add("En Proceso");
         cmbEstatus.getItems().add("Finalizado");
+    }
+    
+    public ObservableList<TicketSoporte> listarTickets(){
+        ArrayList<TicketSoporte> ticketSoporte = new ArrayList<>();
+        
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_listarTicketSoportes()";
+            statement = conexion.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            
+            while)(){
+            int ticketSoporteId = resultSet.getInt("ticketSoporteId()";
+            String 
+            }
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            
+        }
+        return FXCollections.observableList(ticketSoporte);
     }
     
     public ObservableList<Cliente> listarClientes(){
@@ -92,6 +151,27 @@ public class MenuTicketSoporteController implements Initializable {
             }
         }
         return FXCollections.observableList(clientes);
+    }
+    
+    public void agregarTicket(){
+        try{
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            
+        }
+        
+    }
+    
+    public void editarTicket(){
+        try{
+            
+        }catch(){
+            
+        }finally{
+            
+        }
     }
     
     @Override
