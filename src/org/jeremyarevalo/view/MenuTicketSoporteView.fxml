@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jeremyarevalo.controller.MenuTicketSoporteController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FondoTicketSoporte.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfTicketId" editable="false" layoutX="30.0" layoutY="157.0" onAction="#handleButtonAction" prefHeight="20.0" prefWidth="177.0" promptText="Ticket Id" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </TextField>
+      <TextArea fx:id="taDescripcion" layoutX="30.0" layoutY="241.0" prefHeight="131.0" prefWidth="288.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </TextArea>
+      <ComboBox fx:id="cmbCliente" layoutX="337.0" layoutY="157.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="250.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </ComboBox>
+      <ComboBox fx:id="cmbFactura" layoutX="601.0" layoutY="157.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="250.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </ComboBox>
+      <ComboBox fx:id="cmbEstatus" layoutX="30.0" layoutY="415.0" prefHeight="25.0" prefWidth="250.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </ComboBox>
+      <TableView fx:id="tblTickets" layoutX="337.0" layoutY="241.0" prefHeight="332.0" prefWidth="527.0">
+        <columns>
+          <TableColumn fx:id="colTicketId" prefWidth="69.0" text="ticketId" />
+          <TableColumn fx:id="colDescripcion" prefWidth="128.0" text="descripcion" />
+            <TableColumn fx:id="colEstatus" prefWidth="109.0" text="estatus" />
+            <TableColumn fx:id="colCliente" prefWidth="95.0" text="cliente" />
+            <TableColumn fx:id="colFactura" prefWidth="125.0" text="factura" />
+        </columns>
+         <effect>
+            <DropShadow />
+         </effect>
+      </TableView>
+      <Button fx:id="btnGuardar1" layoutX="30.0" layoutY="495.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="85.0" style="-fx-background-radius: 15;" text="Guardar">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="btnCancelar2" layoutX="30.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="85.0" style="-fx-background-radius: 15;" text="Cancelar">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>
