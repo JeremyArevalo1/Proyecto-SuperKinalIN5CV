@@ -16,7 +16,7 @@ public class Conexion {
     private static Conexion instance;
     
     private String url = "jdbc:mysql://localhost:3306/SuperKinalIN5CV?serverTimezone=GMT-6&useSSL=false";
-    private String user = "jeremyarevalo";
+    private String user = "root";
     private String password = "Admin";
             
     private Conexion(){
