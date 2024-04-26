@@ -80,7 +80,7 @@ create procedure sp_agregarCargos(in nomCar varchar(30),in descCar varchar(100))
 			(nombreCargo, descripcionCargo);
     end $$
 delimiter ;
-call sp_agregarCargos;
+-- call sp_agregarCargos;
 
 -- listar
 delimiter $$
@@ -93,7 +93,7 @@ create procedure sp_listarCargos()
 			from Cargos;
     end $$
 delimiter ;
-call sp_listarCargos;
+-- call sp_listarCargos;
 
 -- buscar
 delimiter $$
@@ -107,7 +107,7 @@ create procedure sp_buscarCargos(in carId int)
 			where cargoId = carId;
     end $$
 delimiter ;
-call sp_buscarCargos;
+-- call sp_buscarCargos;
 
 -- eliminar
 delimiter $$
@@ -118,7 +118,7 @@ create procedure sp_eliminarCargos(in carId int)
 				where cargoId = carId;
     end $$
 delimiter ;
-call sp_eliminarCargos;
+--  call sp_eliminarCargos;
 
 -- editar
 delimiter $$
@@ -131,7 +131,7 @@ create procedure sp_editarCargos(in carId int, in nomCar varchar(30),in descCar 
             where cargoId = carId;
     end $$
 delimiter ;
-call sp_editarCargos;
+-- call sp_editarCargos;
 
 -- ------------------------------------------ Compras --------------------------------------------------
 
@@ -143,7 +143,7 @@ create procedure sp_agregarCompras(in fecCom date, in totCom decimal (10,2))
 			(fecCom, totCom);
     end $$
 delimiter ;
-call sp_agregarCompras;
+-- call sp_agregarCompras;
 
 -- listar
 delimiter $$
@@ -155,7 +155,7 @@ create procedure sp_listarCompras()
             Compras.totalCompra
 			from Compras;
     end $$
-delimiter ;
+-- delimiter ;
 call sp_listarCompras;
 
 -- buscar
@@ -170,7 +170,7 @@ create procedure sp_buscarCompras(in comId int)
 			where compraId = comId;
     end $$
 delimiter ;
-call sp_buscarCompras;
+-- call sp_buscarCompras;
 
 -- eliminar 
 delimiter $$
@@ -180,7 +180,7 @@ create procedure sp_eliminarCompras(in comId int)
         where compraId = comId;
     end $$
 delimiter ;
-call sp_eliminarCompras;
+-- call sp_eliminarCompras;
 
 -- editar
 delimiter $$
@@ -193,7 +193,7 @@ create procedure sp_editarCompras(in comId int,in fecCom date,in totCom decimal 
                 where compraId = comId;
     end $$
 delimiter ;
-call sp_editarCompras;
+-- call sp_editarCompras;
 
 -- -------------------------------------- Distribuidor ----------------------------------------------------
 -- Agregar
@@ -204,7 +204,7 @@ create procedure sp_agregarDistribuidores(nomDis varchar(30), dirDis varchar(200
 			(nomDis,dirDis,nitDis,telDis,w);
     end$$
 DELIMITER ;
-call sp_agregarDistribuidores;
+-- call sp_agregarDistribuidores;
 
 -- Listar
 
@@ -221,7 +221,7 @@ create procedure sp_listarDistribuidores()
 			from Distribuidores;
     end$$
 DELIMITER ;
-call sp_listarDistribuidores;
+-- call sp_listarDistribuidores;
  
  -- Buscar
  
@@ -239,7 +239,7 @@ create procedure sp_buscarDistribuidores(disId int)
 			where distribuidorId = disId;
     end$$
 DELIMITER ;
-call sp_buscarDistribuidores;
+-- call sp_buscarDistribuidores;
  
  -- eliminar
  
@@ -250,7 +250,7 @@ create procedure sp_eliminarDistribuidores(dirId int)
         where distribuidorId = dirId;
     end$$
 DELIMITER ;
-call sp_eliminarDistribuidores;
+-- call sp_eliminarDistribuidores;
  
  -- editar
  
@@ -267,7 +267,7 @@ create procedure sp_editarDistribuidores(dirId int, nomDis varchar(30), dirDis v
 			where distribuidorId = dirId;
     end$$
 DELIMITER ;
-call sp_editarDistribuidores;
+-- call sp_editarDistribuidores;
 
 -- ----------------- Categoria Productos --------------------------
 -- Agregar
@@ -278,7 +278,7 @@ create procedure sp_agregarCategoriaProductos(nomCat varchar(30),desCat varchar(
 			(nomCat,desCat);
     end$$
 DELIMITER ;
-call sp_agregarCategoriaProductos;
+-- call sp_agregarCategoriaProductos;
 
 -- listar
  
@@ -292,7 +292,7 @@ create procedure sp_listarCategoriaProductos()
 			from CategoriaProductos;
     end$$
 DELIMITER ;
-call sp_listarCategoriaProductos;
+-- call sp_listarCategoriaProductos;
 
 -- Buscar
  
@@ -307,7 +307,7 @@ create procedure sp_buscarCategoriaProductos(catProId int)
 			where catProId = CP.categoriaProductoId;
     end$$
 DELIMITER ;
-call sp_buscarCategoriaProductos;
+-- call sp_buscarCategoriaProductos;
 
 -- Eliminar
  
@@ -318,7 +318,7 @@ create procedure sp_eliminarCategoriaProductos(catProId int)
         where catProId = categoriaProductoId;
     end $$
 DELIMITER ;
-call sp_eliminarCategoriaProductos;
+-- call sp_eliminarCategoriaProductos;
 
 -- Editar
  
@@ -332,7 +332,7 @@ create procedure sp_editarCategoriaProductos(catProId int,nomCat varchar(30),des
 			where categoriaProductosId = catProId;
     end$$
 DELIMITER ;
-call sp_editarCategoriaProductos;
+-- call sp_editarCategoriaProductos;
 
 -- ------------------------------------------------Productos---------------------------------------------------------------
 
@@ -344,7 +344,7 @@ create procedure sp_agregarProductos(in nomPro varchar(50),in desPro varchar(100
 			(nomPro, desPro, canSto, preUni, preMay, preCom, imaPro, disId, catId);
 	end $$
 delimiter ;
-call sp_agregarProductos;
+-- call sp_agregarProductos;
 
 -- listar
 delimiter $$
@@ -364,7 +364,7 @@ create procedure sp_listarProductos()
 			from Productos;
     end $$
 delimiter ;
-call sp_listarProductos;
+-- call sp_listarProductos;
 
 -- buscar
 delimiter $$
@@ -385,7 +385,7 @@ create procedure sp_buscarProductos(in proId int)
         where productoId = proId;
     end $$
 delimiter ;
-call sp_buscarProductos;
+-- call sp_buscarProductos;
 
 -- eliminar 
 delimiter $$
@@ -395,7 +395,7 @@ create procedure sp_eliminarProductos(in proId int)
 			where productoId = proId;
     end $$
 delimiter ;
-call sp_eliminarProductos;
+-- call sp_eliminarProductos;
 
 -- editar
 delimiter $$
@@ -415,7 +415,7 @@ create procedure sp_editarProductos(in proId int, in nomPro varchar(50),in desPr
             where productoId = proId;
     end $$
 delimiter ;
-call sp_editarProductos;
+-- call sp_editarProductos;
 
 -- ---------------------------------------- Promociones ------------------------------------------
 
@@ -427,7 +427,7 @@ create procedure sp_agregarPromociones(in prePro decimal(10, 2), in descProm var
 			(precioPromocion, descripcionPromocion, fechaInicio, fechaFinalizacione, productoId);
     end $$
 delimiter ;
-call sp_agregarPromociones;
+-- call sp_agregarPromociones;
 
 -- listar
 delimiter $$
@@ -443,7 +443,7 @@ create procedure sp_listarPromociones()
 			from Promociones;
     end $$
 delimiter ;
-call sp_listarPromociones;
+-- call sp_listarPromociones;
 
 -- buscar
 delimiter $$
@@ -460,7 +460,7 @@ create procedure sp_buscarPromociones(in promoId int)
 			where promocionId = promoId;
     end $$
 delimiter ;
-call sp_buscarPromociones;
+-- call sp_buscarPromociones;
 
 -- eliminar
 delimiter $$
@@ -471,7 +471,7 @@ create procedure sp_eliminarPromociones(in promoId int)
 				where promocionId = promoId;
     end $$
 delimiter ;
-call sp_eliminarPromociones;
+-- call sp_eliminarPromociones;
 
 -- editar
 delimiter $$
@@ -487,7 +487,7 @@ create procedure sp_editarPromociones(in promoId int, in prePro decimal(10, 2), 
             where promocionId = promoId;
     end $$
 delimiter ;
-call sp_editarPromociones;
+-- call sp_editarPromociones;
 
 -- -------------------------------------------------DetalleCompras------------------------------------------------------------------
 
@@ -499,7 +499,7 @@ create procedure sp_agregarDetalleCompras(in canC int, in proId int,in comId int
 			(canC, proId, comId);
     end $$
 delimiter ;
-call sp_agregarDetalleCompras;
+-- call sp_agregarDetalleCompras;
 
 -- listar
 delimiter $$
@@ -513,7 +513,7 @@ create procedure sp_listarDetalleCompras()
 			from DetalleCompras;
     end $$
 delimiter ;
-call sp_listarDetalleCompras;
+-- call sp_listarDetalleCompras;
 
 -- buscar
 delimiter $$
@@ -528,7 +528,7 @@ create procedure sp_buscarDetalleCompras(in detCId int)
 			where detalleCompraId = detCId;
     end $$
 delimiter ;
-call sp_buscarDetalleCompras;
+-- call sp_buscarDetalleCompras;
 
 -- eliminar 
 delimiter $$
@@ -538,7 +538,7 @@ create procedure sp_eliminarDetalleCompras(in detCId int)
 			where detalleCompraId = detCId;
     end $$
 delimiter ;
-call sp_eliminarDetalleCompras;
+-- call sp_eliminarDetalleCompras;
 
 -- editar
 delimiter $$
@@ -552,7 +552,7 @@ create procedure sp_editarDetalleCompras(in detCId int, in canC int, in proId in
                 where detalleCompraId = detCId;
     end $$
 delimiter ;
-call sp_editarDetalleCompras;
+-- call sp_editarDetalleCompras;
 
 -- --------------------------------- Empleados --------------------------------------
 
@@ -564,7 +564,7 @@ create procedure sp_agregarEmpleados(in nomEmp varchar(30),in apeEmp varchar(30)
 			(nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargoId, encargadoId);
     end $$
 delimiter ;
-call sp_agregarEmpleados;
+-- call sp_agregarEmpleados;
 
 -- listar
 delimiter $$
@@ -582,7 +582,7 @@ create procedure sp_listarEmpleados()
 			from Empleados;
     end $$
 delimiter ;
-call sp_listarEmpleados;
+-- call sp_listarEmpleados;
 
 -- buscar
 delimiter $$
@@ -601,7 +601,7 @@ create procedure sp_buscarEmpleados(in empId int)
 			where empleadoId = empId;
     end $$
 delimiter ;
-call sp_buscarEmpleados;
+-- call sp_buscarEmpleados;
 
 -- eliminar
 delimiter $$
@@ -612,7 +612,7 @@ create procedure sp_eliminarEmpleados(in empId int)
 				where empleadoId = empId;
     end $$
 delimiter ;
-call sp_eliminarEmpleados;
+-- call sp_eliminarEmpleados;
 
 -- editar
 delimiter $$
@@ -630,7 +630,7 @@ create procedure sp_editarEmpleados(in empId int, in nomEmp varchar(30),in apeEm
             where empleadoId = empId;
     end $$
 delimiter ;
-call sp_editarEmpleados;
+-- call sp_editarEmpleados;
 
 -- -------------------------------------- FACTURAS -------------------------------------
 
@@ -642,7 +642,7 @@ create procedure sp_agregarFacturas(in fec date, in hor time, in tot decimal(10,
 			(fecha, hora, total, clienteId, empleadoId);
     end $$
 delimiter ;
-call sp_agregarFacturas;
+-- call sp_agregarFacturas;
 
 -- listar
 delimiter $$
@@ -657,7 +657,7 @@ create procedure sp_listarFacturas()
 			from Facturas;
     end $$
 delimiter ;
-call sp_listarFacturas;
+-- call sp_listarFacturas;
 
 -- buscar
 delimiter $$
@@ -673,7 +673,7 @@ create procedure sp_buscarFacturas(in facId int)
 			where facturaId = facId;
     end $$
 delimiter ;
-call sp_buscarFacturas;
+-- call sp_buscarFacturas;
 
 -- eliminar
 delimiter $$
@@ -684,7 +684,7 @@ create procedure sp_eliminarFacturas(in facId int)
 				where facturaId = facId;
     end $$
 delimiter ;
-call sp_eliminarFacturas;
+-- call sp_eliminarFacturas;
 
 -- editar
 delimiter $$
@@ -700,7 +700,7 @@ create procedure sp_editarFacturas(in facId int, in fec date, in hor time, in to
             where facturaId = facId;
     end $$
 delimiter ;
-call sp_editarFacturas;
+-- call sp_editarFacturas;
 
 -- ------------------ Detalle Facturas ---------------------------
 -- Agregar
@@ -711,7 +711,7 @@ begin
 		(factId, prodId);
 end $$
 DELIMITER ;
-call sp_agregarDetalleFacturas;
+-- call sp_agregarDetalleFacturas;
 
  -- listar DetalleFactura
 DELIMITER $$
@@ -724,7 +724,7 @@ begin
 			from DetalleFacturas;
 end $$
 DELIMITER ;
-call sp_listarDetalleFacturas
+-- call sp_listarDetalleFacturas
 
  -- Eliminar
 DELIMITER $$
@@ -735,7 +735,7 @@ begin
 			where detalleFacturaId = detId;
 end $$
 DELIMITER ;
-call sp_eliminarDetalleFacturas;
+-- call sp_eliminarDetalleFacturas;
 
  -- Buscar
 DELIMITER $$
@@ -749,7 +749,7 @@ begin
 			where detalleFacturaId = detId;
 end $$
 DELIMITER ;
-call sp_buscarDetalleFacturas;
+-- call sp_buscarDetalleFacturas;
 
  -- Editar
 DELIMITER $$
@@ -762,7 +762,7 @@ begin
             where detalleFacturaId = detId;
 end $$
 DELIMITER ;
-call sp_editarDetalleFacturas;
+-- call sp_editarDetalleFacturas;
 
 -- ----------------------------------------- Ticket Soporte --------------------------------------------------------
 DELIMITER $$
@@ -772,7 +772,7 @@ begin
 		(desTic,'Recien Creado',cliId,facId);
 end $$
 DELIMITER ;
-call sp_agregarTicketSoportes;
+-- call sp_agregarTicketSoportes;
  
 DELIMITER $$
 create procedure sp_listarTicketSoportes()
@@ -783,7 +783,7 @@ begin
 	join Clientes C on TS.clienteId = C.clienteId;
 end $$
 DELIMITER ;
-call sp_listarTicketSoportes;
+-- call sp_listarTicketSoportes;
  
 DELIMITER $$
 create procedure sp_eliminarTicketSoportes(in tikSopId int)
@@ -793,7 +793,7 @@ begin
 			where ticketSoporteId = tikSopId;
 end$$
 DELIMITER ;
-call sp_eliminarTicketSoportes;
+-- call sp_eliminarTicketSoportes;
  
 DELIMITER $$
 create procedure sp_buscarTicketSoportes(in tikSopId int)
@@ -808,7 +808,7 @@ begin
 			where ticketSoporteId = tikSopId;
 end $$
 DELIMITER ;
-call sp_buscarTicketSoportes;
+-- call sp_buscarTicketSoportes;
  
 DELIMITER $$
 create procedure sp_editarTicketSoportes(in tikSopId int,in desTic varchar(250), in est varchar(30), in cliId int, in facId int )
@@ -822,7 +822,7 @@ begin
 				where ticketSoporteId = tikSopId;
 end $$
 DELIMITER ;
-call sp_editarTicketSoportes;
+-- call sp_editarTicketSoportes;
 
 
 
