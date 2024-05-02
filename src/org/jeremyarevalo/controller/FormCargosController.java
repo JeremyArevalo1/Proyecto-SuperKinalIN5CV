@@ -17,8 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import org.jeremyarevalo.dao.Conexion;
-import org.jeremyarevalo.dto.ClienteDTO;
-import org.jeremyarevalo.model.Cliente;
+import org.jeremyarevalo.dto.CargoDTO;
+import org.jeremyarevalo.model.Cargos;
 import org.jeremyarevalo.system.Main;
 import org.jeremyarevalo.utils.SuperKinalAlert;
 
@@ -27,7 +27,7 @@ import org.jeremyarevalo.utils.SuperKinalAlert;
  *
  * @author jerem
  */
-public class FormClientesController implements Initializable {
+public class FormCargosController implements Initializable {
     private Main stage;
     private int op;
     
@@ -35,35 +35,37 @@ public class FormClientesController implements Initializable {
     private static PreparedStatement statement;
     
     @FXML
-    TextField tfClienteId, tfNombre, tfApellido, tfTelefono, tfDireccion, tfNit;
+    TextField tfCargoId, tfNomCargo, tfDesCargo;
+    
     @FXML
-    Button btnGuardar, btnCancelar;
+    Button btnGuardar3, btnCancelar3;
+    
     @FXML
     public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnCancelar){
-            stage.menuClientesView();
-            ClienteDTO.getClienteDTO().setCliente(null);
-        }else if(event.getSource() == btnGuardar){
+        if(event.getSource() == btnCancelar3){
+            stage.menuCargosView();
+            CargoDTO.getCargoDTO().setCargos(null);
+        }else if(event.getSource() == btnGuardar3){
             if(op == 1){
-                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfDireccion.getText().equals("")){
-                agregarCliente();
+                if(!tfNomCargo.getText().equals("") && !tfDesCargo.getText().equals("")){
+                agregarCargos();
                 SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
-                stage.menuClientesView(); 
+                stage.menuCargosView(); 
                 }else{
                     SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
-                    tfNombre.requestFocus();
+                    tfNomCargo.requestFocus();
                     return;
                 }  
             }else if(op == 2){
-                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfDireccion.getText().equals("")){
+                if(!tfNomCargo.getText().equals("") && !tfDesCargo.getText().equals("")){
                     if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(106).get() == ButtonType.OK){
-                        editarCliente();
-                        ClienteDTO.getClienteDTO().setCliente(null);
-                        stage.menuClientesView();   
+                        editarCargos();
+                        CargoDTO.getCargoDTO().setCargos(null);
+                        stage.menuCargosView();   
                     }
                 }else{
                     SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
-                    tfNombre.requestFocus();
+                    tfNomCargo.requestFocus();
                     return;
                 }
                 
@@ -71,26 +73,20 @@ public class FormClientesController implements Initializable {
 
         }
     }
-    public void cargarDatos(Cliente cliente){
-        tfClienteId.setText(Integer.toString(cliente.getClienteId()));
-        tfNombre.setText(cliente.getNombre());
-        tfApellido.setText(cliente.getApellido());
-        tfTelefono.setText(cliente.getTelefono());
-        tfDireccion.setText(cliente.getDireccion());
-        tfNit.setText(cliente.getNit());
-        
+    
+    public void cargarDatoss(Cargos cargos){
+        tfCargoId.setText(Integer.toString(cargos.getCargoId()));
+        tfNomCargo.setText(cargos.getNombreCargo());
+        tfDesCargo.setText(cargos.getDescripcionCargo());
     }
     
-    public void agregarCliente(){
+    public void agregarCargos(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_agregarClientes(?,?,?,?,?)";
+            String sql = "call sp_agregarCargos(?,?)";
             statement = conexion.prepareStatement(sql);
-            statement.setString(1, tfNombre.getText());
-            statement.setString(2, tfApellido.getText());
-            statement.setString(3, tfTelefono.getText());
-            statement.setString(4, tfDireccion.getText());
-            statement.setString(5, tfNit.getText());
+            statement.setString(1, tfNomCargo.getText());
+            statement.setString(2, tfDesCargo.getText());
             statement.execute();
 
         }catch(SQLException e){
@@ -109,17 +105,14 @@ public class FormClientesController implements Initializable {
         }
     }
     
-    public void editarCliente(){
+    public void editarCargos(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_editarClientes(?,?,?,?,?,?)";
+            String sql = "call sp_editarCargos(?,?,?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfClienteId.getText()));
-            statement.setString(2, tfNombre.getText());
-            statement.setString(3, tfApellido.getText());
-            statement.setString(4, tfTelefono.getText());
-            statement.setString(5, tfDireccion.getText());
-            statement.setString(6, tfNit.getText());
+            statement.setInt(1, Integer.parseInt(tfCargoId.getText()));
+            statement.setString(2, tfNomCargo.getText());
+            statement.setString(3, tfDesCargo.getText());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -142,10 +135,11 @@ public class FormClientesController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(ClienteDTO.getClienteDTO().getCliente() != null){
-            cargarDatos(ClienteDTO.getClienteDTO().getCliente());
+        if(CargoDTO.getCargoDTO().getCargos() != null){
+            cargarDatoss(CargoDTO.getCargoDTO().getCargos());
         }
-    }    
+        // TODO
+    }
 
     public Main getStage() {
         return stage;
@@ -158,6 +152,7 @@ public class FormClientesController implements Initializable {
     public void setOp(int op) {
         this.op = op;
     }
+    
     
     
 }

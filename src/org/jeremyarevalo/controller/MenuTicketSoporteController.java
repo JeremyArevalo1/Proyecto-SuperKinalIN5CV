@@ -47,7 +47,7 @@ public class MenuTicketSoporteController implements Initializable {
     @FXML
     ComboBox cmbEstatus, cmbCliente;
     @FXML
-    Button btnCancelar2, btnGuardar2;
+    Button btnCancelar2, btnGuardar2, btnVaciar;
     @FXML
     TableView tblTickets;
     @FXML
@@ -66,16 +66,19 @@ public class MenuTicketSoporteController implements Initializable {
                 agregarTicket();
                 cargarDatos();
             }else{
-                agregarTicket();
+                editarTicket();
                 cargarDatos();
             }
+        }else if(event.getSource() == btnVaciar){
+            vaciarCampos();
         }
     }
     
     public void vaciarCampos(){
         tfTicketId.clear();
         taDescripcion.clear();
-        cmbEstatus.getSelectionModel();
+        cmbEstatus.getSelectionModel().clearSelection();
+        cmbCliente.getSelectionModel().clearSelection();
     }
     
     public void cargarDatos(){

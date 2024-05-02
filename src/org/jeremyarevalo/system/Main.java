@@ -13,8 +13,12 @@ import javafx.stage.Stage;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import org.jeremyarevalo.controller.FormCargosController;
 import org.jeremyarevalo.controller.FormClientesController;
+import org.jeremyarevalo.controller.FormDistribuidoresController;
+import org.jeremyarevalo.controller.MenuCargosController;
 import org.jeremyarevalo.controller.MenuClientesController;
+import org.jeremyarevalo.controller.MenuDistribuidoresController;
 import org.jeremyarevalo.controller.MenuPrincipalController;
 import org.jeremyarevalo.controller.MenuTicketSoporteController;
 
@@ -83,6 +87,44 @@ public class Main extends Application {
         try{
             MenuTicketSoporteController menuTicketSoporteView = (MenuTicketSoporteController)switchScene("MenuTicketSoporteView.fxml", 900, 600);
             menuTicketSoporteView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuCargosView(){
+        try{
+            MenuCargosController menuCargosView = (MenuCargosController)switchScene("MenuCargosView.fxml", 900, 600);
+            menuCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formCargosView(int op){
+        try{
+            FormCargosController formCargosView = (FormCargosController)switchScene("FormCargosView.fxml", 400, 500);
+            formCargosView.setOp(op);
+            formCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuDistribuidoresView(){
+        try{
+            MenuDistribuidoresController menuDistribuidoresView = (MenuDistribuidoresController)switchScene("MenuDistribuidoresView.fxml", 900, 600);
+            menuDistribuidoresView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formDistribuidoresView(int op){
+        try{
+            FormDistribuidoresController formDistribuidoresView = (FormDistribuidoresController)switchScene("FormDistribuidoresView.fxml", 400, 500);
+            formDistribuidoresView.setOp(op);
+            formDistribuidoresView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

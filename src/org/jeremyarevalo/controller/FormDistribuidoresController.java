@@ -17,8 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import org.jeremyarevalo.dao.Conexion;
-import org.jeremyarevalo.dto.ClienteDTO;
-import org.jeremyarevalo.model.Cliente;
+import org.jeremyarevalo.dto.DistribuidorDTO;
+import org.jeremyarevalo.model.Distribuidores;
 import org.jeremyarevalo.system.Main;
 import org.jeremyarevalo.utils.SuperKinalAlert;
 
@@ -27,7 +27,7 @@ import org.jeremyarevalo.utils.SuperKinalAlert;
  *
  * @author jerem
  */
-public class FormClientesController implements Initializable {
+public class FormDistribuidoresController implements Initializable {
     private Main stage;
     private int op;
     
@@ -35,35 +35,36 @@ public class FormClientesController implements Initializable {
     private static PreparedStatement statement;
     
     @FXML
-    TextField tfClienteId, tfNombre, tfApellido, tfTelefono, tfDireccion, tfNit;
+    TextField tfDistribuidorId, tfNomDistribuidor, tfDirDistribuidor, tfNitDistribuidor, tfTelDistribuidor, tfWeb;
     @FXML
-    Button btnGuardar, btnCancelar;
+    Button btnGuardar4, btnCancelar4;
+    
     @FXML
     public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnCancelar){
-            stage.menuClientesView();
-            ClienteDTO.getClienteDTO().setCliente(null);
-        }else if(event.getSource() == btnGuardar){
+        if(event.getSource() == btnCancelar4){
+            stage.menuDistribuidoresView();
+            DistribuidorDTO.getDistribuidorDTO().setDistribuidores(null);
+        }else if(event.getSource() == btnGuardar4){
             if(op == 1){
-                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfDireccion.getText().equals("")){
-                agregarCliente();
+                if(!tfNomDistribuidor.getText().equals("") && !tfDirDistribuidor.getText().equals("") && !tfNitDistribuidor.getText().equals("") && !tfTelDistribuidor.getText().equals("")){
+                agregarDistribuidor();
                 SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
-                stage.menuClientesView(); 
+                stage.menuDistribuidoresView(); 
                 }else{
                     SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
-                    tfNombre.requestFocus();
+                    tfNomDistribuidor.requestFocus();
                     return;
                 }  
             }else if(op == 2){
-                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfDireccion.getText().equals("")){
+                if(!tfNomDistribuidor.getText().equals("") && !tfDirDistribuidor.getText().equals("") && !tfNitDistribuidor.getText().equals("") && !tfTelDistribuidor.getText().equals("")){
                     if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(106).get() == ButtonType.OK){
-                        editarCliente();
-                        ClienteDTO.getClienteDTO().setCliente(null);
-                        stage.menuClientesView();   
+                        editarDistribuidor();
+                        DistribuidorDTO.getDistribuidorDTO().setDistribuidores(null);
+                        stage.menuDistribuidoresView();   
                     }
                 }else{
                     SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
-                    tfNombre.requestFocus();
+                    tfNomDistribuidor.requestFocus();
                     return;
                 }
                 
@@ -71,26 +72,27 @@ public class FormClientesController implements Initializable {
 
         }
     }
-    public void cargarDatos(Cliente cliente){
-        tfClienteId.setText(Integer.toString(cliente.getClienteId()));
-        tfNombre.setText(cliente.getNombre());
-        tfApellido.setText(cliente.getApellido());
-        tfTelefono.setText(cliente.getTelefono());
-        tfDireccion.setText(cliente.getDireccion());
-        tfNit.setText(cliente.getNit());
+    
+    public void cargarDatosss(Distribuidores distribuidores){
+        tfDistribuidorId.setText(Integer.toString(distribuidores.getDistribuidorId()));
+        tfNomDistribuidor.setText(distribuidores.getNombreDistribuidor());
+        tfDirDistribuidor.setText(distribuidores.getDireccionDistribuidor());
+        tfNitDistribuidor.setText(distribuidores.getNitDistribuidor());
+        tfTelDistribuidor.setText(distribuidores.getTelefonoDistribuidor());
+        tfWeb.setText(distribuidores.getWeb());
         
     }
     
-    public void agregarCliente(){
+    public void agregarDistribuidor(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_agregarClientes(?,?,?,?,?)";
+            String sql = "call sp_agregarDistribuidores(?,?,?,?,?)";
             statement = conexion.prepareStatement(sql);
-            statement.setString(1, tfNombre.getText());
-            statement.setString(2, tfApellido.getText());
-            statement.setString(3, tfTelefono.getText());
-            statement.setString(4, tfDireccion.getText());
-            statement.setString(5, tfNit.getText());
+            statement.setString(1, tfNomDistribuidor.getText());
+            statement.setString(2, tfDirDistribuidor.getText());
+            statement.setString(3, tfNitDistribuidor.getText());
+            statement.setString(4, tfTelDistribuidor.getText());
+            statement.setString(5, tfWeb.getText());
             statement.execute();
 
         }catch(SQLException e){
@@ -109,17 +111,17 @@ public class FormClientesController implements Initializable {
         }
     }
     
-    public void editarCliente(){
+    public void editarDistribuidor(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_editarClientes(?,?,?,?,?,?)";
+            String sql = "call sp_editarDistribuidores(?,?,?,?,?,?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfClienteId.getText()));
-            statement.setString(2, tfNombre.getText());
-            statement.setString(3, tfApellido.getText());
-            statement.setString(4, tfTelefono.getText());
-            statement.setString(5, tfDireccion.getText());
-            statement.setString(6, tfNit.getText());
+            statement.setInt(1, Integer.parseInt(tfDistribuidorId.getText()));
+            statement.setString(2, tfNomDistribuidor.getText());
+            statement.setString(3, tfDirDistribuidor.getText());
+            statement.setString(4, tfNitDistribuidor.getText());
+            statement.setString(5, tfTelDistribuidor.getText());
+            statement.setString(6, tfWeb.getText());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -142,10 +144,12 @@ public class FormClientesController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(ClienteDTO.getClienteDTO().getCliente() != null){
-            cargarDatos(ClienteDTO.getClienteDTO().getCliente());
+        // TODO
+        if(DistribuidorDTO.getDistribuidorDTO().getDistribuidores() != null){
+            cargarDatosss(DistribuidorDTO.getDistribuidorDTO().getDistribuidores());
         }
-    }    
+        
+    }  
 
     public Main getStage() {
         return stage;
@@ -158,6 +162,7 @@ public class FormClientesController implements Initializable {
     public void setOp(int op) {
         this.op = op;
     }
+    
     
     
 }

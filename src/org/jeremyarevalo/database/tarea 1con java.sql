@@ -146,5 +146,7 @@ insert into Clientes(nombre, apellido, telefono, direccion, nit) values
 	('Elkyn', 'Samayoa', '6666-6666', 'Salgoloteo el Chiquito', '5489634-0'),
 	('Jorge', 'Peralta', '3333-3333', 'Chinique Quiche', '2778945-0');
     
-select * from Clientes;
- 
+-- select * from Clientes;
+-- select * from Cargos;
+-- select * from TicketSoportes;
+-- select * from Distribuidores;

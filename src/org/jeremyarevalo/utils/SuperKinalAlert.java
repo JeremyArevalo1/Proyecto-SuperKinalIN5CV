@@ -30,14 +30,14 @@ public class SuperKinalAlert {
     public void mostrarAlertaInfo(int code){
         if(code == 400){
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("campos pendientes");
-            alert.setHeaderText("campos pendientes");
+            alert.setTitle("Campos pendientes");
+            alert.setHeaderText("Campos pendientes");
             alert.setContentText("Algunos campos necesarios para el registro estan pendientes");
             alert.showAndWait();
         }else if(code == 401){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("campos pendientes");
-            alert.setHeaderText("campos pendientes");
+            alert.setTitle("Confirmacion de registro");
+            alert.setHeaderText("Confirmacion de registro");
             alert.setContentText("El registro se ha creado con exito!");
             alert.showAndWait();
         }

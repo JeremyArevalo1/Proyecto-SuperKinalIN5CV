@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuCargosController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FondoCargos.png" />
+         </image></ImageView>
+      <TableView fx:id="tblCargos" layoutX="39.0" layoutY="173.0" prefHeight="388.0" prefWidth="661.0">
+        <columns>
+          <TableColumn fx:id="colCargoId" prefWidth="75.0" text="cargoId" />
+          <TableColumn fx:id="colNomCargo" prefWidth="247.0" text="nombre Cargo" />
+            <TableColumn fx:id="colDesCargo" prefWidth="338.0" text="Descripcion Cargo" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tfCargoId" layoutX="427.0" layoutY="122.0" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="207.0" promptText="Ingrese el Id del cargo" />
+      <Button fx:id="btnBuscar1" layoutX="646.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/lupita.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <GridPane layoutX="738.0" layoutY="208.0" prefHeight="295.0" prefWidth="123.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregar" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Agregar">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btnEditar1" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Editar" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Reportes" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btnEliminar1" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Eliminar" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btnRegresar1" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Regresar" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btnAgregar1" layoutX="23.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Agregar">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
