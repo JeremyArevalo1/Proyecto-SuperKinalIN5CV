@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuProductosController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="300.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/MenuProductos.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfProductoId" editable="false" layoutX="24.0" layoutY="95.0" prefHeight="25.0" prefWidth="178.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="tfNomProducto" layoutX="24.0" layoutY="161.0" prefHeight="25.0" prefWidth="178.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextArea fx:id="taDesProducto" layoutX="24.0" layoutY="236.0" prefHeight="47.0" prefWidth="178.0" style="-fx-background-radius: 5;" wrapText="true">
+         <effect>
+            <DropShadow />
+         </effect></TextArea>
+      <TextField fx:id="tfCanStock" layoutX="24.0" layoutY="332.0" prefHeight="25.0" prefWidth="178.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="tfPrecioVenUnitario" layoutX="24.0" layoutY="405.0" prefHeight="25.0" prefWidth="178.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="tfPrecioVenMayor" layoutX="24.0" layoutY="480.0" prefHeight="25.0" prefWidth="178.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TextField fx:id="tfPrecioCompra" layoutX="24.0" layoutY="552.0" prefHeight="25.0" prefWidth="178.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <TableView fx:id="tblProductos" layoutX="211.0" layoutY="189.0" prefHeight="393.0" prefWidth="679.0">
+        <columns>
+            <TableColumn fx:id="colProId" prefWidth="75.0" text="producto Id" />
+          <TableColumn fx:id="colNomPro" prefWidth="75.0" text="Nom. Producto" />
+          <TableColumn fx:id="colDesPro" prefWidth="75.0" text="Des. Producto" />
+            <TableColumn fx:id="colCanStock" prefWidth="75.0" text="Cant. Stock" />
+            <TableColumn fx:id="colPreVenU" prefWidth="75.0" text="Precio Ven. U" />
+            <TableColumn fx:id="colPreVenM" prefWidth="75.0" text="Precio Ven. M" />
+            <TableColumn fx:id="colPreCompra" prefWidth="75.0" text="Precio Compra" />
+            <TableColumn fx:id="colDistribuidorId" prefWidth="75.0" text="Distribuidor" />
+            <TableColumn fx:id="colCatProductoId" prefWidth="78.0" text="Cat. Producto" />
+        </columns>
+      </TableView>
+      <ImageView fx:id="imgCargar" fitHeight="128.0" fitWidth="149.0" layoutX="585.0" layoutY="20.0" onDragDropped="#handleOnDrop" onDragOver="#handleOnDrag" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/arrastraImagenn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgMostrar" fitHeight="128.0" fitWidth="150.0" layoutX="430.0" layoutY="20.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/mostrarImagen.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfBuscar1" layoutX="226.0" layoutY="158.0" prefHeight="25.0" prefWidth="159.0" promptText="ingrese el Id del Producto..." style="-fx-background-radius: 10;">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <Button fx:id="btnBuscar7" layoutX="391.0" layoutY="158.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="33.0" style="-fx-background-radius: 5;">
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/lupita.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="btnRegresar7" layoutX="228.0" layoutY="107.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 10;" text="Regresar">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="btnGuardar7" layoutX="228.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 10;" text="Guardar">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <Button fx:id="btnVaciar7" layoutX="326.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 10;" text="Vaciar form">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <ComboBox fx:id="cmbDistribuidorId" layoutX="452.0" layoutY="158.0" prefHeight="25.0" prefWidth="180.0" promptText="Distribuidores" style="-fx-background-radius: 10;">
+         <effect>
+            <DropShadow />
+         </effect></ComboBox>
+      <ComboBox fx:id="cmbCatProducto" layoutX="655.0" layoutY="158.0" prefHeight="25.0" prefWidth="180.0" promptText="Categoria Producto" style="-fx-background-radius: 10;">
+         <effect>
+            <DropShadow />
+         </effect></ComboBox>
+      <Label fx:id="lblNombreProducto" layoutX="326.0" layoutY="111.0" prefHeight="33.0" prefWidth="90.0" />
+   </children>
+</AnchorPane>

@@ -3,6 +3,9 @@ drop database if exists superKinalIN5CV;
 create database if not exists superKinalIN5CV;
  
 use superKinalIN5CV;
+
+set global time_zone = '-6:00';
+
  
 create table Clientes(
 	clienteId int not null auto_increment,
@@ -41,7 +44,7 @@ create table Distribuidores(
 create table CategoriaProductos(
 	categoriaProductoId int not null auto_increment,
     nombreCategoria varchar(30) not null,
-    descripcionCategora varchar(100) not null,
+    descripcionCategoria varchar(100) not null,
     primary key PK_categoriaProductoId (categoriaProductoId)
 );
 
@@ -53,7 +56,7 @@ create table Productos(
     precioVentaUnitario decimal(10.2) not null,
     precioVentaMayor decimal(10,2) not null,
     precioCompra decimal(10,2) not null,
-    imageProducto blob,
+    imagenProducto longblob,
     distribuidorId int not null,
     categoriaProductoId int not null,
     primary key PK_productoId (productoId),
@@ -97,9 +100,9 @@ create table Empleados(
     cargoId int not null,
     encargadoId int,
     primary key PK_empleadoId(empleadoId),
-    constraint FK_Empleados_Cargos foreign key Empleados(cargoId)
+    constraint FK_Empleados_Cargos foreign key (cargoId)
 		references Cargos(cargoId),
-	constraint FK_encargadoId foreign key Empleados(encargadoId)
+	constraint FK_encargadoId foreign key (encargadoId)
 		references Empleados(empleadoId)
     
 );
@@ -150,3 +153,5 @@ insert into Clientes(nombre, apellido, telefono, direccion, nit) values
 -- select * from Cargos;
 -- select * from TicketSoportes;
 -- select * from Distribuidores;
+-- select * from Empleados;
+-- select * from Productos;

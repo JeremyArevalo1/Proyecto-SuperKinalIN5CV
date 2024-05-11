@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jeremyarevalo.controller.MenuCategoriasProductosController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/MenuCategoriaProductos.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="741.0" layoutY="218.0" prefHeight="295.0" prefWidth="123.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregar" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Agregar">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btnEditar4" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Editar" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Reportes" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btnEliminar4" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Eliminar" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btnAgregar4" layoutX="23.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Agregar">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btnRegresar4" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Regresar" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+         </children>
+      </GridPane>
+      <TextField fx:id="tfCatProId" layoutX="471.0" layoutY="162.0" prefHeight="28.0" prefWidth="179.0" promptText="Ingerese el Id" />
+      <Button fx:id="btnBuscar4" layoutX="659.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="28.0" prefWidth="49.0">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/lupita.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TableView fx:id="tblCategoriaProductos" layoutX="24.0" layoutY="201.0" prefHeight="382.0" prefWidth="695.0">
+        <columns>
+          <TableColumn fx:id="colCatProId" prefWidth="110.0" text="Cat. Producto Id" />
+          <TableColumn fx:id="colNomCat" prefWidth="314.0" text="Nombre Categoria" />
+            <TableColumn fx:id="colDesCat" minWidth="0.0" prefWidth="270.0" text="Descripcion Categoria" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

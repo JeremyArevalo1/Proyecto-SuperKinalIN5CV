@@ -14,12 +14,18 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import org.jeremyarevalo.controller.FormCargosController;
+import org.jeremyarevalo.controller.FormCategoriasProductosController;
 import org.jeremyarevalo.controller.FormClientesController;
 import org.jeremyarevalo.controller.FormDistribuidoresController;
+import org.jeremyarevalo.controller.FormEmpleadosController;
 import org.jeremyarevalo.controller.MenuCargosController;
+import org.jeremyarevalo.controller.MenuCategoriasProductosController;
 import org.jeremyarevalo.controller.MenuClientesController;
 import org.jeremyarevalo.controller.MenuDistribuidoresController;
+import org.jeremyarevalo.controller.MenuEmpleadosController;
+import org.jeremyarevalo.controller.MenuFacturasController;
 import org.jeremyarevalo.controller.MenuPrincipalController;
+import org.jeremyarevalo.controller.MenuProductosController;
 import org.jeremyarevalo.controller.MenuTicketSoporteController;
 
 /**
@@ -125,6 +131,65 @@ public class Main extends Application {
             FormDistribuidoresController formDistribuidoresView = (FormDistribuidoresController)switchScene("FormDistribuidoresView.fxml", 400, 500);
             formDistribuidoresView.setOp(op);
             formDistribuidoresView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formEmpleadosView(int op){
+        try{
+            FormEmpleadosController formEmpleadosView = (FormEmpleadosController)switchScene("FormEmpleadosView.fxml", 400, 500);
+            formEmpleadosView.setOp(op);
+            formEmpleadosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuEmpleadosView(){
+        try{
+            MenuEmpleadosController menuEmpleadosView = (MenuEmpleadosController)switchScene("MenuEmpleadosView.fxml", 900, 600);
+            menuEmpleadosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuFacturasView(){
+        try{
+            MenuFacturasController menuFacturasView = (MenuFacturasController)switchScene("MenuFacturasView.fxml", 900, 600);
+            menuFacturasView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void formCategoriaProductosView(int op){
+        try{
+            FormCategoriasProductosController formCategoriasProductosView = (FormCategoriasProductosController)switchScene("FormCategoriasProductosView.fxml", 400, 500);
+            formCategoriasProductosView.setOp(op);
+            formCategoriasProductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuCategoriasProductosView(){
+        try{
+            MenuCategoriasProductosController menuCategoriasProductosView = (MenuCategoriasProductosController)switchScene("MenuCategoriasProductosView.fxml", 900, 600);
+            menuCategoriasProductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    public void menuProductosView(){
+        try{
+            MenuProductosController menuproductosView = (MenuProductosController)switchScene("MenuProductosView.fxml", 900, 600);
+            menuproductosView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

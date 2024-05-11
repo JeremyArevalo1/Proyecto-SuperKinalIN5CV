@@ -278,7 +278,9 @@ create procedure sp_agregarCategoriaProductos(nomCat varchar(30),desCat varchar(
 			(nomCat,desCat);
     end$$
 DELIMITER ;
--- call sp_agregarCategoriaProductos;
+call sp_agregarCategoriaProductos('Cocina', 'Aca encontraras todo para tu cocina');
+
+select * from CategoriaProductos;
 
 -- listar
  
@@ -288,7 +290,7 @@ create procedure sp_listarCategoriaProductos()
 		select 
 			CategoriaProductos.categoriaProductoId,
             CategoriaProductos.nombreCategoria,
-            CategoriaProductos.descripcionCategora
+            CategoriaProductos.descripcionCategoria
 			from CategoriaProductos;
     end$$
 DELIMITER ;
@@ -300,14 +302,15 @@ DELIMITER $$
 create procedure sp_buscarCategoriaProductos(catProId int)
 	begin
 		select
-			CategoriaProductos.categoriaProductoId,
-            CategoriaProductos.nombreCategoria,
-            CategoriaProductos.descripcionCategora
+			CP.categoriaProductoId,
+            CP.nombreCategoria,
+            CP.descripcionCategoria
 			from CategoriaProductos CP
 			where catProId = CP.categoriaProductoId;
     end$$
 DELIMITER ;
--- call sp_buscarCategoriaProductos;
+ call sp_buscarCategoriaProductos(1);
+
 
 -- Eliminar
  
@@ -338,7 +341,7 @@ DELIMITER ;
 
 -- agregar
 delimiter $$
-create procedure sp_agregarProductos(in nomPro varchar(50),in desPro varchar(100),in canSto int, in preUni decimal(10,2),in preMay decimal(10,2),in preCom decimal(10,2), in imaPro blob, in disId int, in catId int)
+create procedure sp_agregarProductos(in nomPro varchar(50),in desPro varchar(100),in canSto int, in preUni decimal(10,2),in preMay decimal(10,2),in preCom decimal(10,2), in imaPro longblob, in disId int, in catId int)
 	begin
 		insert into Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId ) values
 			(nomPro, desPro, canSto, preUni, preMay, preCom, imaPro, disId, catId);
@@ -351,20 +354,14 @@ delimiter $$
 create procedure sp_listarProductos()
 	begin 
 		select
-			Productos.productoId,
-            Productos.nombreProducto,
-            Productos.descripcionProducto,
-            Productos.cantidadStock,
-            Productos.precioVentaUnitario,
-            Productos.precioVentaMayor,
-            Productos.precioCompra,
-            Productos.imageProducto,
-            Productos.distribuidorId,
-            Productos.categoriaProductoId
-			from Productos;
+			P.productoId,P.nombreProducto,P.descripcionProducto,P.cantidadStock,P.precioVentaUnitario,P.precioVentaMayor,P.precioCompra,P.imagenProducto,
+        concat(D.distribuidorId, ': | ' , D.nombreDistribuidor ) as 'distribuidor',
+        concat(C.categoriaProductoId, ': | ', C.nombreCategoria) as 'categoriaProducto' from Productos P
+        join Distribuidores D on P.distribuidorId = D.distribuidorId
+        join CategoriaProductos C on P.categoriaProductoId = C.categoriaProductoId;
     end $$
 delimiter ;
--- call sp_listarProductos;
+-- call sp_listarProductos();
 
 -- buscar
 delimiter $$
@@ -378,7 +375,7 @@ create procedure sp_buscarProductos(in proId int)
             Productos.precioVentaUnitario,
             Productos.precioVentaMayor,
             Productos.precioCompra,
-            Productos.imageProducto,
+            Productos.imagenProducto,
             Productos.distribuidorId,
             Productos.categoriaProductoId
 			from Productos
@@ -399,7 +396,7 @@ delimiter ;
 
 -- editar
 delimiter $$
-create procedure sp_editarProductos(in proId int, in nomPro varchar(50),in desPro varchar(100),in canSto int, in preUni decimal(10,2),in preMay decimal(10,2),in preCom decimal(10,2), in imaPro blob, in disId int, in catId int )
+create procedure sp_editarProductos(in proId int, in nomPro varchar(50),in desPro varchar(100),in canSto int, in preUni decimal(10,2),in preMay decimal(10,2),in preCom decimal(10,2), in imaPro longblob, in disId int, in catId int )
 	begin
 		update Productos	
 			set 
@@ -564,44 +561,36 @@ create procedure sp_agregarEmpleados(in nomEmp varchar(30),in apeEmp varchar(30)
 			(nomEmp, apeEmp, sue, horEn, horSa, carid, encarId);
     end $$
 delimiter ;
-call sp_agregarEmpleados('Carlos', 'Rosas', 3525.20, '07:00:00', '05:00:00', 1, 1);
+call sp_agregarEmpleados('Jeremy', 'Miranda', 3525.20, '07:00:00', '05:00:00', 1, null);
 
 -- listar
 delimiter $$
 create procedure sp_listarEmpleados()
 	begin
 		select 
-			Empleados.empleadoId,
-            Empleados.nombreEmpleado,
-            Empleados.apellidoEmpleado,
-            Empleados.sueldo,
-            Empleados.horaEntrada,
-            Empleados.horaSalida,
-            Empleados.cargoId,
-            Empleados.encargadoId
-			from Empleados;
+			E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+			C.nombreCargo as cargo,
+			E2.nombreEmpleado as encargado from Empleados E1
+			join Cargos C on C.cargoId = E1.cargoId
+			left join Empleados E2 on E1.encargadoId = E2.empleadoId;
     end $$
 delimiter ;
--- call sp_listarEmpleados;
+call sp_listarEmpleados();
 
 -- buscar
 delimiter $$
 create procedure sp_buscarEmpleados(in empId int)
 	begin
 		select 
-			Empleados.empleadoId,
-            Empleados.nombreEmpleado,
-            Empleados.apellidoEmpleado,
-            Empleados.sueldo,
-            Empleados.horaEntrada,
-            Empleados.horaSalida,
-            Empleados.cargoId,
-            Empleados.encargadoId
-			from Empleados
-			where empleadoId = empId;
+            E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+			C.nombreCargo as cargo,
+			E2.nombreEmpleado as 'encargado' from Empleados E1
+			join Cargos C on C.cargoId = E1.cargoId
+			left join Empleados E2 on E1.encargadoId = E2.empleadoId
+			where E1.empleadoId = empId;
     end $$
 delimiter ;
--- call sp_buscarEmpleados;
+ -- call sp_buscarEmpleados(1);
 
 -- eliminar
 delimiter $$
@@ -621,8 +610,8 @@ create procedure sp_editarEmpleados(in empId int, in nomEmp varchar(30),in apeEm
 		update Empleados
 			set 
             nombreEmpleado = nomEmp,
-            apeEmp = apellidoEmpleado,
-            sueldo = suel,
+            apellidoEmpleado = apeEmp,
+            sueldo = sue,
             horaEntrada = horEn,
             horaSalida = horSa,
             cargoId = carId,
@@ -630,7 +619,17 @@ create procedure sp_editarEmpleados(in empId int, in nomEmp varchar(30),in apeEm
             where empleadoId = empId;
     end $$
 delimiter ;
--- call sp_editarEmpleados;
+-- call sp_editarEmpleados(1, "Carlos", "Rosas", "6563.00", "07:00:00", "17:00:00", 1, 2);
+
+DELIMITER $$
+	CREATE PROCEDURE sp_AsignarEncargadoId (IN encId INT, In empId INT)
+		BEGIN
+			UPDATE Empleados
+				SET 
+					encargadoId = encId
+                    WHERE empleadoId = empId;
+		END $$
+DELIMITER ;
 
 -- -------------------------------------- FACTURAS -------------------------------------
 
@@ -648,16 +647,15 @@ call sp_agregarFacturas('2021-03-24', '08:00:00', 10.02, 1, 1);
 delimiter $$
 create procedure sp_listarFacturas()
 	begin
-		select 
-			Facturas.facturaId,
-            Facturas.fecha,
-            Facturas.hora,
-            Facturas.clienteId,
-            Facturas.empleadoId
-			from Facturas;
+		select F.facturaId, F.fecha, F.hora, F.total,
+			C.nombre as cliente,
+            E.nombreEmpleado as empleado from Facturas F
+            join Clientes C on F.clienteId = C.clienteId
+            join Empleados E on F.empleadoId = E.empleadoId;
     end $$
 delimiter ;
--- call sp_listarFacturas;
+call sp_listarFacturas();
+
 
 -- buscar
 delimiter $$
@@ -783,7 +781,7 @@ begin
 	join Clientes C on TS.clienteId = C.clienteId;
 end $$
 DELIMITER ;
--- call sp_listarTicketSoportes;
+call sp_listarTicketSoportes();
  
 DELIMITER $$
 create procedure sp_eliminarTicketSoportes(in tikSopId int)
