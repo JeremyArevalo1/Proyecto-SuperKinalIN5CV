@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuPrincipalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuPrincipalController">
    <children>
       <MenuBar layoutY="2.0" prefWidth="800.0">
         <menus>
@@ -21,6 +21,8 @@
                   <MenuItem fx:id="btnMenuFacturas" mnemonicParsing="false" onAction="#handleButtonAction" text="Facturas" />
                   <MenuItem fx:id="btnMenuCategoriaProductos" mnemonicParsing="false" onAction="#handleButtonAction" text="Categoria Productos" />
                   <MenuItem fx:id="btnMenuProductos" mnemonicParsing="false" onAction="#handleButtonAction" text="Productos" />
+                  <MenuItem fx:id="btnCompras" mnemonicParsing="false" onAction="#handleButtonAction" text="Compras" />
+                  <MenuItem fx:id="btnPromociones" mnemonicParsing="false" onAction="#handleButtonAction" text="Promociones" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Reportes">

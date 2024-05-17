@@ -13,20 +13,7 @@ import javafx.stage.Stage;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import org.jeremyarevalo.controller.FormCargosController;
-import org.jeremyarevalo.controller.FormCategoriasProductosController;
-import org.jeremyarevalo.controller.FormClientesController;
-import org.jeremyarevalo.controller.FormDistribuidoresController;
-import org.jeremyarevalo.controller.FormEmpleadosController;
-import org.jeremyarevalo.controller.MenuCargosController;
-import org.jeremyarevalo.controller.MenuCategoriasProductosController;
-import org.jeremyarevalo.controller.MenuClientesController;
-import org.jeremyarevalo.controller.MenuDistribuidoresController;
-import org.jeremyarevalo.controller.MenuEmpleadosController;
-import org.jeremyarevalo.controller.MenuFacturasController;
-import org.jeremyarevalo.controller.MenuPrincipalController;
-import org.jeremyarevalo.controller.MenuProductosController;
-import org.jeremyarevalo.controller.MenuTicketSoporteController;
+import org.jeremyarevalo.controller.*;
 
 /**
  *
@@ -190,6 +177,24 @@ public class Main extends Application {
         try{
             MenuProductosController menuproductosView = (MenuProductosController)switchScene("MenuProductosView.fxml", 900, 600);
             menuproductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuComprasView(){
+        try{
+            MenuComprasController menuComprasView = (MenuComprasController)switchScene("MenuComprasView.fxml", 900, 600);
+            menuComprasView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuPromocionesView(){
+        try{
+            MenuPromocionesController menuPromocionesView = (MenuPromocionesController)switchScene("MenuPromocionesView.fxml", 900, 600);
+            menuPromocionesView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
