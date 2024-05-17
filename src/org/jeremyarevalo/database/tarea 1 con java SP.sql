@@ -149,11 +149,7 @@ delimiter ;
 delimiter $$
 create procedure sp_listarCompras()
 	begin
-		select 
-			Compras.compraId,
-            Compras.fechaCompra,
-            Compras.totalCompra
-			from Compras;
+		select * from Compras;
     end $$
 -- delimiter ;
 call sp_listarCompras;
@@ -343,7 +339,7 @@ DELIMITER ;
 delimiter $$
 create procedure sp_agregarProductos(in nomPro varchar(50),in desPro varchar(100),in canSto int, in preUni decimal(10,2),in preMay decimal(10,2),in preCom decimal(10,2), in imaPro longblob, in disId int, in catId int)
 	begin
-		insert into Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId ) values
+		insert into Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductoId ) values
 			(nomPro, desPro, canSto, preUni, preMay, preCom, imaPro, disId, catId);
 	end $$
 delimiter ;
@@ -353,36 +349,30 @@ delimiter ;
 delimiter $$
 create procedure sp_listarProductos()
 	begin 
-		select
-			P.productoId,P.nombreProducto,P.descripcionProducto,P.cantidadStock,P.precioVentaUnitario,P.precioVentaMayor,P.precioCompra,P.imagenProducto,
-        concat(D.distribuidorId, ': | ' , D.nombreDistribuidor ) as 'distribuidor',
-        concat(C.categoriaProductoId, ': | ', C.nombreCategoria) as 'categoriaProducto' from Productos P
-        join Distribuidores D on P.distribuidorId = D.distribuidorId
-        join CategoriaProductos C on P.categoriaProductoId = C.categoriaProductoId;
+		select P.productoId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor, P.precioCompra, P.imagenProducto,
+			D.nombreDistribuidor, 
+            CP.nombreCategoria from Productos P
+            join Distribuidores D on P.distribuidorId =  D.distribuidorId
+            join CategoriaProductos CP on P.categoriaProductoId = CP.categoriaProductoId;
     end $$
 delimiter ;
 -- call sp_listarProductos();
+
+select * from CategoriaProductos;
 
 -- buscar
 delimiter $$
 create procedure sp_buscarProductos(in proId int)
 	begin 
-		select 
-			Productos.productoId,
-            Productos.nombreProducto,
-            Productos.descripcionProducto,
-            Productos.cantidadStock,
-            Productos.precioVentaUnitario,
-            Productos.precioVentaMayor,
-            Productos.precioCompra,
-            Productos.imagenProducto,
-            Productos.distribuidorId,
-            Productos.categoriaProductoId
-			from Productos
-        where productoId = proId;
+		select P.productoId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor, P.precioCompra, P.imagenProducto,
+			D.nombreDistribuidor, 
+            CP.nombreCategoria from Productos P
+            join Distribuidores D on P.distribuidorId =  D.distribuidorId
+            join CategoriaProductos CP on P.categoriaProductoId = CP.categoriaProductoId
+			where productoId = proId;
     end $$
 delimiter ;
--- call sp_buscarProductos;
+-- call sp_buscarProductos(1);
 
 -- eliminar 
 delimiter $$
@@ -420,8 +410,8 @@ delimiter ;
 delimiter $$
 create procedure sp_agregarPromociones(in prePro decimal(10, 2), in descProm varchar(100), in feIni date, in feFin date, in proId int)
 	begin
-		insert into Promociones (prePro, descPro, feIni, feFin, proId) values
-			(precioPromocion, descripcionPromocion, fechaInicio, fechaFinalizacione, productoId);
+		insert into Promociones (precioPromocion, descripcionPromocion, fechaInicio, fechaFinalizacion, productoId) values
+			(prePro, descProm, feIni, feFin, proId);
     end $$
 delimiter ;
 -- call sp_agregarPromociones;
@@ -430,14 +420,9 @@ delimiter ;
 delimiter $$
 create procedure sp_listarPromociones()
 	begin
-		select 
-			Promociones.promocionId,
-            Promociones.precioPromocion,
-            Promociones.descripcionPromocion,
-            Promociones.fechaInicio,
-            Promociones.fechaFinalizacion,
-            Promociones.productoId
-			from Promociones;
+		select P.promocionId, P.precioPromocion, P.descripcionPromocion, P.fechaInicio, P.fechaFinalizacion,
+        PO.nombreProducto as 'producto' from Promociones P
+        join Productos PO on PO.productoId = P.productoId;
     end $$
 delimiter ;
 -- call sp_listarPromociones;
@@ -777,8 +762,10 @@ create procedure sp_listarTicketSoportes()
 begin
 	select TS.ticketSoporteId, TS.descripcionTicket, TS.estatus,
 		concat('id: ', C.clienteId, '|', C.nombre, ' ', C.apellido) AS 'cliente',
+        concat('Id de factura: ' , F.facturaId) AS 'factura',
         TS.facturaId from TicketSoportes TS
-	join Clientes C on TS.clienteId = C.clienteId;
+	join Clientes C on TS.clienteId = C.clienteId
+    join Facturas F on TS.facturaId = F.facturaId;
 end $$
 DELIMITER ;
 call sp_listarTicketSoportes();
@@ -821,6 +808,37 @@ begin
 end $$
 DELIMITER ;
 -- call sp_editarTicketSoportes;
+
+
+-- Agregar Usuario
+delimiter $$
+create procedure sp_agregarUsuarios(us varchar(40), con varchar(100), nivAccId int, empId int)
+begin
+	insert into Usuarios(usuario, contrasenia, nivelAccesoId, empleadoId) values
+		(us, con, nivAccId, empId);
+end $$
+delimiter ;
+
+-- Buscar Usuario
+delimiter $$
+create procedure sp_buscarUsuarios(us varchar(30))
+begin
+	select * from Usuarios
+		where usuario = us;
+end $$
+delimiter ;
+ 
+-- ---------Listar Acceso ------------------
+
+delimiter $$
+create procedure sp_listarNivelAcceso()
+begin
+	select * from nivelesAcceso;
+end $$
+delimiter ;
+
+call sp_listarNivelAcceso();
+
 
 
 

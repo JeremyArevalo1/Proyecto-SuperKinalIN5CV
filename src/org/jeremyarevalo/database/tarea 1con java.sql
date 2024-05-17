@@ -145,6 +145,27 @@ create table TicketSoportes(
 		references Facturas(facturaId)
 );
 
+create table NivelesAcceso(
+	nivelAccesoId int not null auto_increment,
+    nivelAcceso varchar(40) not null,
+    primary key PK_nivelAccesoId(nivelAccesoId)
+);
+
+create table Usuarios (
+	usuarioId int not null auto_increment,
+    usuario varchar(30) not null,
+    contrasenia varchar(100) not null,
+    nivelAccesoId int not null,
+    empleadoId int not null,
+    primary key PK_usuarioId(usuarioId),
+    constraint FK_Usuarios_NivelesAcceso foreign key Usuarios(nivelAccesoId)
+		references NivelesAcceso(nivelAccesoId),
+	constraint FK_Usuarios_Empleados foreign key Usuarios(empleadoId)
+		references Empleados(empleadoId)
+);
+ 
+
+
 insert into Clientes(nombre, apellido, telefono, direccion, nit) values
 	('Elkyn', 'Samayoa', '6666-6666', 'Salgoloteo el Chiquito', '5489634-0'),
 	('Jorge', 'Peralta', '3333-3333', 'Chinique Quiche', '2778945-0');
@@ -155,3 +176,6 @@ insert into Clientes(nombre, apellido, telefono, direccion, nit) values
 -- select * from Distribuidores;
 -- select * from Empleados;
 -- select * from Productos;
+-- select * from Usuarios;
+-- select * from nivelesAcceso;
+-- select * from Facturas;

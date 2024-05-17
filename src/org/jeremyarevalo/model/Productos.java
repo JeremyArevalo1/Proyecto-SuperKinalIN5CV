@@ -17,13 +17,13 @@ public class Productos {
     private int cantidadStock;
     private Double precioVentaUnitario, precioVentaMayor, precioCompra;
     private Blob imagenProducto;
-    private String distribuidor, categoriaProducto;
+    private String nombreDistribuidor, nombreCategoria;
     private int distribuidorId, categoriaProductoId;
 
     public Productos() {
     }
 
-    public Productos(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, Double precioVentaUnitario, Double precioVentaMayor, Double precioCompra, Blob imagenProducto, String distribuidor, String categoriaProducto) {
+    public Productos(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, Double precioVentaUnitario, Double precioVentaMayor, Double precioCompra, Blob imagenProducto, String nombreDistribuidor, String nombreCategoria) {
         this.productoId = productoId;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
@@ -32,8 +32,8 @@ public class Productos {
         this.precioVentaMayor = precioVentaMayor;
         this.precioCompra = precioCompra;
         this.imagenProducto = imagenProducto;
-        this.distribuidor = distribuidor;
-        this.categoriaProducto = categoriaProducto;
+        this.nombreDistribuidor = nombreDistribuidor;
+        this.nombreCategoria = nombreCategoria;
     }
 
     public Productos(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, Double precioVentaUnitario, Double precioVentaMayor, Double precioCompra, Blob imagenProducto, int distribuidorId, int categoriaProductoId) {
@@ -113,20 +113,20 @@ public class Productos {
         this.imagenProducto = imagenProducto;
     }
 
-    public String getDistribuidor() {
-        return distribuidor;
+    public String getNombreDistribuidor() {
+        return nombreDistribuidor;
     }
 
-    public void setDistribuidor(String distribuidor) {
-        this.distribuidor = distribuidor;
+    public void setNombreDistribuidor(String nombreDistribuidor) {
+        this.nombreDistribuidor = nombreDistribuidor;
     }
 
-    public String getCategoriaProducto() {
-        return categoriaProducto;
+    public String getNombreCategoria() {
+        return nombreCategoria;
     }
 
-    public void setCategoriaProducto(String categoriaProducto) {
-        this.categoriaProducto = categoriaProducto;
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
     }
 
     public int getDistribuidorId() {
@@ -147,7 +147,7 @@ public class Productos {
 
     @Override
     public String toString() {
-        return "Productos{" + "productoId=" + productoId + ", nombreProducto=" + nombreProducto + ", descripcionProducto=" + descripcionProducto + ", cantidadStock=" + cantidadStock + ", precioVentaUnitario=" + precioVentaUnitario + ", precioVentaMayor=" + precioVentaMayor + ", precioCompra=" + precioCompra + ", imagenProducto=" + imagenProducto + ", distribuidor=" + distribuidor + ", categoriaProducto=" + categoriaProducto + ", distribuidorId=" + distribuidorId + ", categoriaProductoId=" + categoriaProductoId + '}';
+        return "ID: " + productoId + " - " + nombreProducto;
     }
     
     

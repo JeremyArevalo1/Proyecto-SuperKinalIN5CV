@@ -13,19 +13,19 @@ public class TicketSoporte {
     private int ticketSoporteId;
     private String descripcionTicket;
     private String estatus;
-    private String cliente;
+    private String cliente, factura;
     private int clienteId;
     private int facturaId;
 
     public TicketSoporte() {
     }
 
-    public TicketSoporte(int ticketSoporteId, String descripcionTicket, String estatus, String cliente, int facturaId) {
+    public TicketSoporte(int ticketSoporteId, String descripcionTicket, String estatus, String cliente, String factura) {
         this.ticketSoporteId = ticketSoporteId;
         this.descripcionTicket = descripcionTicket;
         this.estatus = estatus;
         this.cliente = cliente;
-        this.facturaId = facturaId;
+        this.factura = factura;
     }
 
     public TicketSoporte(int ticketSoporteId, String descripcionTicket, String estatus, int clienteId, int facturaId) {
@@ -68,6 +68,14 @@ public class TicketSoporte {
         this.cliente = cliente;
     }
 
+    public String getFactura() {
+        return factura;
+    }
+
+    public void setFactura(String factura) {
+        this.factura = factura;
+    }
+
     public int getClienteId() {
         return clienteId;
     }
@@ -83,6 +91,8 @@ public class TicketSoporte {
     public void setFacturaId(int facturaId) {
         this.facturaId = facturaId;
     }
+
+    
 
     @Override
     public String toString() {

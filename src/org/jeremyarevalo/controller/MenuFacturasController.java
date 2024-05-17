@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -33,6 +34,7 @@ import org.jeremyarevalo.model.Cliente;
 import org.jeremyarevalo.model.Empleados;
 import org.jeremyarevalo.model.Facturas;
 import org.jeremyarevalo.system.Main;
+import org.jeremyarevalo.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -48,7 +50,7 @@ public class MenuFacturasController implements Initializable {
     private static ResultSet resultset = null;
     
     @FXML
-    Button btnRegresar, btnGuardar, btnVaciar;
+    Button btnRegresar, btnGuardar, btnVaciar, btnEliminar;
     
     @FXML
     TextField tfFacturaId, tfHora, tfTotal, tfFecha;
@@ -76,6 +78,12 @@ public class MenuFacturasController implements Initializable {
             }
         }else if(event.getSource() == btnVaciar){
             vaciarCampos();
+        }else if(event.getSource() == btnEliminar){
+            if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(405).get() == ButtonType.OK){
+                int facId = ((Facturas)tblFacturas.getSelectionModel().getSelectedItem()).getFacturaId();
+                eliminarFacturas(facId);
+                cargarDatos();
+            }    
         }
     }
     
@@ -305,6 +313,29 @@ public class MenuFacturasController implements Initializable {
                 }
                 if(statement != null){
                     statement.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    public void eliminarFacturas(int facId){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_eliminarFacturas(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, facId);
+            statement.execute();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
                 }
             }catch(SQLException e){
                 System.out.println(e.getMessage());
