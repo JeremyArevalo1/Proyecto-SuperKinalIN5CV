@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jeremyarevalo.controller.MenuRegistroController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuRegistroController">
    <children>
       <ImageView fitHeight="500.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -29,5 +28,13 @@
       <TextField fx:id="tfPassword" layoutX="81.0" layoutY="243.0" prefHeight="25.0" prefWidth="174.0" />
       <ComboBox fx:id="cmbNivelA" layoutX="81.0" layoutY="322.0" prefHeight="25.0" prefWidth="174.0" />
       <ComboBox fx:id="cmbEmpleadoo" layoutX="81.0" layoutY="404.0" prefHeight="25.0" prefWidth="174.0" />
+      <Button fx:id="btnAgrEmpleado" layoutX="284.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="90.0" style="-fx-background-radius: 10;" text="Agregar Empleado" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

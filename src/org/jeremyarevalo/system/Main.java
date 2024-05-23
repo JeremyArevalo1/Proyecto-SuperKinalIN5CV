@@ -28,7 +28,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setTitle("Super Kinal APP");
-        menuPrincipalView();
+        menuLoginView();
         stage.show();
     }
     
@@ -195,6 +195,24 @@ public class Main extends Application {
         try{
             MenuPromocionesController menuPromocionesView = (MenuPromocionesController)switchScene("MenuPromocionesView.fxml", 900, 600);
             menuPromocionesView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuRegistroView(){
+        try{
+            MenuRegistroController menuRegistroView = (MenuRegistroController)switchScene("MenuRegistroView.fxml", 400, 500);
+            menuRegistroView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuLoginView(){
+        try{
+            MenuLoginController menuLoginView = (MenuLoginController)switchScene("MenuLoginView.fxml", 400, 500);
+            menuLoginView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

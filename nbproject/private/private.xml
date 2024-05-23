@@ -3,16 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/model/Compras.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/utils/SuperKinalAlert.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/controller/MenuDistribuidoresController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/controller/MenuPrincipalController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/controller/MenuFacturasController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/controller/MenuTicketSoporteController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/system/Main.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/controller/MenuProductosController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/view/MenuComprasView.fxml</file>
-            <file>file:/C:/Users/Joaki/Desktop/Proyecto-SuperKinalIN5CV%204%20(1)/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/controller/MenuComprasController.java</file>
+            <file>file:/C:/Users/jerem/OneDrive/Escritorio/repositorio/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/controller/MenuRegistroController.java</file>
+            <file>file:/C:/Users/jerem/OneDrive/Escritorio/repositorio/Proyecto-SuperKinalIN5CV/src/org/jeremyarevalo/controller/MenuLoginController.java</file>
         </group>
     </open-files>
 </project-private>

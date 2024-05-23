@@ -40,6 +40,19 @@ public class SuperKinalAlert {
             alert.setHeaderText("Confirmacion de registro");
             alert.setContentText("El registro se ha creado con exito!");
             alert.showAndWait();
+        }else if(code == 805){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("usuario Incorrecto");
+            alert.setHeaderText("usuario Incorrecto");
+            alert.setContentText("verifique el usuario");
+            alert.showAndWait();
+        }else if(code == 815){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("contraseña Incorrecta");
+            alert.setHeaderText("contraseña Incorrecta");
+            alert.setContentText("verifique la contraseña");
+            alert.showAndWait();
+                
         }
     }
     
@@ -59,6 +72,14 @@ public class SuperKinalAlert {
             action = alert.showAndWait();
         }
         return action;
+    }
+    
+    public void alertaSaludo(String usuario){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bienvenido");
+        alert.setHeaderText("Bienvenido");
+        alert.setContentText("Bienvenido " + usuario);
+        alert.showAndWait();
     }
     
 }

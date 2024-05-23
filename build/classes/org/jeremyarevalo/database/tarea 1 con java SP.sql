@@ -762,8 +762,10 @@ create procedure sp_listarTicketSoportes()
 begin
 	select TS.ticketSoporteId, TS.descripcionTicket, TS.estatus,
 		concat('id: ', C.clienteId, '|', C.nombre, ' ', C.apellido) AS 'cliente',
+        concat('Id de factura: ' , F.facturaId) AS 'factura',
         TS.facturaId from TicketSoportes TS
-	join Clientes C on TS.clienteId = C.clienteId;
+	join Clientes C on TS.clienteId = C.clienteId
+    join Facturas F on TS.facturaId = F.facturaId;
 end $$
 DELIMITER ;
 call sp_listarTicketSoportes();

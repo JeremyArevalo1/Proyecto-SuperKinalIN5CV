@@ -69,6 +69,9 @@ public class FormEmpleadosController implements Initializable {
                     return;
                 }
                 
+            }else if(op == 3){
+                agregarEmpleado();
+                stage.menuRegistroView();
             }
 
         }

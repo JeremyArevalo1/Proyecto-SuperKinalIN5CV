@@ -41,7 +41,7 @@ public class MenuRegistroController implements Initializable {
     @FXML
     TextField tfUser, tfPassword;
     @FXML
-    Button btnRegistrar;
+    Button btnRegistrar, btnAgrEmpleado;
     @FXML
     ComboBox cmbNivelA, cmbEmpleadoo;
     /**
@@ -57,6 +57,9 @@ public class MenuRegistroController implements Initializable {
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegistrar){
             agregarUsuario();
+            stage.menuLoginView();
+        }else if(event.getSource() == btnAgrEmpleado){
+            stage.formEmpleadosView(3);
         }
     }
     
@@ -141,7 +144,7 @@ public class MenuRegistroController implements Initializable {
     public void agregarUsuario(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_sp_agregarUsuarios(?,?,?,?)";
+            String sql = "call sp_agregarUsuarios(?,?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, tfUser.getText());
             statement.setString(2, PasswordUtils.getInstance().encrytedPassword(tfPassword.getText()));

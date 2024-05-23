@@ -7,8 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.jeremyarevalo.controller.MenuLoginController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuLoginController">
    <children>
       <ImageView fitHeight="500.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,7 +16,7 @@
       </ImageView>
       <TextField fx:id="tfUsuario" layoutX="81.0" layoutY="174.0" prefHeight="25.0" prefWidth="172.0" />
       <PasswordField fx:id="pfContrasenia" layoutX="81.0" layoutY="245.0" prefHeight="25.0" prefWidth="172.0" />
-      <Button fx:id="btnIniciar" layoutX="81.0" layoutY="326.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="Iniciar Sesion" />
-      <Button fx:id="btnRegistrarU" disable="true" layoutX="186.0" layoutY="326.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="90.0" text="Registrar Usuario" wrapText="true" />
+      <Button fx:id="btnIniciar" layoutX="81.0" layoutY="326.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="65.0" prefWidth="90.0" text="Iniciar Sesion" />
+      <Button fx:id="btnRegistrarU" disable="true" layoutX="186.0" layoutY="326.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="65.0" prefWidth="90.0" text="Registrar Usuario" wrapText="true" />
    </children>
 </AnchorPane>
