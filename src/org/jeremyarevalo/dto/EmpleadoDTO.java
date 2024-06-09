@@ -5,7 +5,7 @@
  */
 package org.jeremyarevalo.dto;
 
-import org.jeremyarevalo.model.Empleados;
+import org.jeremyarevalo.model.Empleado;
 
 /**
  *
@@ -13,7 +13,7 @@ import org.jeremyarevalo.model.Empleados;
  */
 public class EmpleadoDTO {
     private static EmpleadoDTO instance;
-    private Empleados empleados;
+    private Empleado empleados;
     
     private EmpleadoDTO(){
         
@@ -26,11 +26,11 @@ public class EmpleadoDTO {
         return instance;
     }
 
-    public Empleados getEmpleados() {
+    public Empleado getEmpleados() {
         return empleados;
     }
 
-    public void setEmpleados(Empleados empleados) {
+    public void setEmpleados(Empleado empleados) {
         this.empleados = empleados;
     }
     

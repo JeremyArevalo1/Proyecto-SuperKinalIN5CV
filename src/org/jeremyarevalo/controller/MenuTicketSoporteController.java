@@ -28,7 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.jeremyarevalo.dao.Conexion;
 import org.jeremyarevalo.model.Cliente;
-import org.jeremyarevalo.model.Facturas;
+import org.jeremyarevalo.model.Factura;
 import org.jeremyarevalo.model.TicketSoporte;
 import org.jeremyarevalo.system.Main;
 
@@ -218,8 +218,8 @@ public class MenuTicketSoporteController implements Initializable {
         return FXCollections.observableList(clientes);
     }
     
-    public ObservableList<Facturas> listarFacturas(){
-        ArrayList<Facturas> facturas = new ArrayList<>();
+    public ObservableList<Factura> listarFacturas(){
+        ArrayList<Factura> facturas = new ArrayList<>();
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_listarFacturas()";
@@ -230,12 +230,13 @@ public class MenuTicketSoporteController implements Initializable {
                 int facturaId = resultSet.getInt("facturaId");
                 Date fecha = resultSet.getDate("fecha");
                 Time hora = resultSet.getTime("hora");
-                String cliente = resultSet.getString("cliente");
-                String empleado = resultSet.getString("empleado");
                 Double total = resultSet.getDouble("total");
+                String cliente = resultSet.getString("nombre");
+                String empleado = resultSet.getString("nombreEmpleado");
+                String producto = resultSet.getString("nombreProducto");
 
                 
-                facturas.add(new Facturas(facturaId, fecha.toLocalDate(), hora.toLocalTime(), total, cliente, empleado));
+                facturas.add(new Factura(facturaId, fecha.toLocalDate(), hora.toLocalTime(), total, cliente, empleado, producto));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -251,7 +252,7 @@ public class MenuTicketSoporteController implements Initializable {
                     conexion.close();
                 }
             }catch(SQLException e){
-                System.out.println(e.getMessage());
+                
             }
         }
         
@@ -265,7 +266,7 @@ public class MenuTicketSoporteController implements Initializable {
             statement = conexion.prepareStatement(sql);
             statement.setString(1, taDescripcion.getText());
             statement.setInt(2, ((Cliente)cmbCliente.getSelectionModel().getSelectedItem()).getClienteId());
-            statement.setInt(3, ((Facturas)cmbFactura.getSelectionModel().getSelectedItem()).getFacturaId());
+            statement.setInt(3, ((Factura)cmbFactura.getSelectionModel().getSelectedItem()).getFacturaId());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -293,7 +294,7 @@ public class MenuTicketSoporteController implements Initializable {
             statement.setString(2, taDescripcion.getText());
             statement.setString(3, cmbEstatus.getSelectionModel().getSelectedItem().toString());
             statement.setInt(4, ((Cliente)cmbCliente.getSelectionModel().getSelectedItem()).getClienteId());
-            statement.setInt(5, ((Facturas)cmbFactura.getSelectionModel().getSelectedItem()).getFacturaId());
+            statement.setInt(5, ((Factura)cmbFactura.getSelectionModel().getSelectedItem()).getFacturaId());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());

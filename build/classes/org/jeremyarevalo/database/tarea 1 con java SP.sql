@@ -131,7 +131,7 @@ create procedure sp_editarCargos(in carId int, in nomCar varchar(30),in desCar v
             where cargoId = carId;
     end $$
 delimiter ;
-call sp_editarCargos(1, 'Adminitrador', 'Administra los clientes');
+-- call sp_editarCargos(1, 'Adminitrador', 'Administra los clientes');
 
 -- ------------------------------------------ Compras --------------------------------------------------
 
@@ -350,8 +350,8 @@ delimiter $$
 create procedure sp_listarProductos()
 	begin 
 		select P.productoId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor, P.precioCompra, P.imagenProducto,
-			D.nombreDistribuidor, 
-            CP.nombreCategoria from Productos P
+			D.nombreDistribuidor as Distribuidor, 
+            CP.nombreCategoria as Categoria from Productos P
             join Distribuidores D on P.distribuidorId =  D.distribuidorId
             join CategoriaProductos CP on P.categoriaProductoId = CP.categoriaProductoId;
     end $$
@@ -546,7 +546,7 @@ create procedure sp_agregarEmpleados(in nomEmp varchar(30),in apeEmp varchar(30)
 			(nomEmp, apeEmp, sue, horEn, horSa, carid, encarId);
     end $$
 delimiter ;
-call sp_agregarEmpleados('Jeremy', 'Miranda', 3525.20, '07:00:00', '05:00:00', 1, null);
+call sp_agregarEmpleados('Joaquin', 'Perez', 2600.50, '07:00:00', '17:00:00', 1, null);
 
 -- listar
 delimiter $$
@@ -561,6 +561,15 @@ create procedure sp_listarEmpleados()
     end $$
 delimiter ;
 call sp_listarEmpleados();
+
+delimiter $$
+create procedure sp_listarEncargados()
+	begin
+		select E1.empleadoId, E1.nombreEmpleado,
+			E2.nombreEmpleado from Empleados E1
+			left join Empleados E2 on E1.encargadoId = E2.empleadoId where E1.encargadoId is null;
+    end$$
+delimiter ;
 
 -- buscar
 delimiter $$
@@ -620,26 +629,51 @@ DELIMITER ;
 
 -- Agregar
 delimiter $$
-create procedure sp_agregarFacturas(in fec date, in hor time, in tot decimal(10, 2), in cliId int, in empId int)
-	begin
-		insert into Facturas (fecha, hora, total, clienteId, empleadoId) values
-			(fec, hor, tot, cliId, empId);
-    end $$
+
+create procedure sp_agregarFacturas(in fe date, in ho time, in tot decimal(10, 2), in cliId int, in empId int, in proId int)
+begin
+    declare facturaIdOld int;
+
+    insert into Facturas (fecha, hora, total, clienteId, empleadoId, productoId) 
+    values (fe, ho, tot, cliId, empId, proId);
+
+    set facturaIdOld = last_insert_id();
+
+    insert into detalleFacturas (facturaId, productoId) 
+    values (facturaIdOld, proId);
+
+    call sp_asignarTotal(fn_totalFactura(facturaIdOld), facturaIdOld);
+end $$
+
 delimiter ;
 call sp_agregarFacturas('2021-03-24', '08:00:00', 10.02, 1, 1);
+
+delimiter $$
+
+create procedure sp_agregarProductoAFactura(in facId int, in proId int)
+begin
+
+    insert into detalleFacturas (facturaId, productoId) 
+    values (facId, proId);
+
+    call sp_asignarTotal(fn_totalFactura(facturaId), facturaId);
+end $$
+
+delimiter ;
 
 -- listar
 delimiter $$
 create procedure sp_listarFacturas()
 	begin
 		select F.facturaId, F.fecha, F.hora, F.total,
-			C.nombre as cliente,
-            E.nombreEmpleado as empleado from Facturas F
-            join Clientes C on F.clienteId = C.clienteId
-            join Empleados E on F.empleadoId = E.empleadoId;
+        C.nombre,
+        E.nombreEmpleado, 
+        P.nombreProducto from Facturas F
+        join Clientes C on C.clienteId = F.clienteId
+        join Empleados E on E.empleadoId = F.empleadoId
+        join Productos P on P.productoId = F.productoId;
     end $$
 delimiter ;
-call sp_listarFacturas();
 
 
 -- buscar
@@ -667,7 +701,7 @@ create procedure sp_eliminarFacturas(in facId int)
 				where facturaId = facId;
     end $$
 delimiter ;
--- call sp_eliminarFacturas;
+-- call sp_eliminarFacturas();
 
 -- editar
 delimiter $$
@@ -839,7 +873,12 @@ delimiter ;
 
 call sp_listarNivelAcceso();
 
+select * from DetalleFacturas DF
+join Productos P on DF.productoId = P.productoId
+join Facturas F on DF.facturaId = F.facturaId
+join Clientes C on F.clienteId = C.clienteId
+where F.facturaId = 2;
 
-
-
-
+select * from productos P
+join Distribuidores D on P.distribuidorId = D.distribuidorId 
+join CategoriaProductos C on P.categoriaProductoId = C.categoriaProductoId

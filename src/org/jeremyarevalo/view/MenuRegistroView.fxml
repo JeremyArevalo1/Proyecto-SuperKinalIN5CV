@@ -16,7 +16,7 @@
             <Image url="@../image/MenuRegistro.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnRegistrar" layoutX="284.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="90.0" style="-fx-background-radius: 10;" text="Registrar">
+      <Button fx:id="btnRegistrar" layoutX="284.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="90.0" style="-fx-background-radius: 10;" text="Registrar">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -29,6 +29,14 @@
       <ComboBox fx:id="cmbNivelA" layoutX="81.0" layoutY="322.0" prefHeight="25.0" prefWidth="174.0" />
       <ComboBox fx:id="cmbEmpleadoo" layoutX="81.0" layoutY="404.0" prefHeight="25.0" prefWidth="174.0" />
       <Button fx:id="btnAgrEmpleado" layoutX="284.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="90.0" style="-fx-background-radius: 10;" text="Agregar Empleado" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="btnCancelar2" layoutX="284.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="90.0" style="-fx-background-radius: 10;" text="Cancelar">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>

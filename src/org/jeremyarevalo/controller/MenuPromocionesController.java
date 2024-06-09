@@ -26,7 +26,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.jeremyarevalo.dao.Conexion;
-import org.jeremyarevalo.model.Productos;
+import org.jeremyarevalo.model.Producto;
 import org.jeremyarevalo.model.Promociones;
 import org.jeremyarevalo.system.Main;
 
@@ -167,7 +167,7 @@ public class MenuPromocionesController implements Initializable {
             statement.setString(2, taDescripcion.getText());
             statement.setString(3, tfInicio.getText());
             statement.setString(4, tfFinalizacion.getText());
-            statement.setInt(5, ((Productos)cmbProductos.getSelectionModel().getSelectedItem()).getProductoId());
+            statement.setInt(5, ((Producto)cmbProductos.getSelectionModel().getSelectedItem()).getProductoId());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -214,8 +214,8 @@ public class MenuPromocionesController implements Initializable {
         }
     }
     
-    public ObservableList<Productos> listarProductos() {
-        ArrayList<Productos> productos = new ArrayList<>();
+    public ObservableList<Producto> listarProductos() {
+        ArrayList<Producto> productos = new ArrayList<>();
         try {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_listarProductos()";
@@ -231,10 +231,10 @@ public class MenuPromocionesController implements Initializable {
                 double precioVentaMayor = resultSet.getDouble("precioVentaMayor");
                 double precioCompra = resultSet.getDouble("precioCompra");
                 Blob imagenProducto = resultSet.getBlob("imagenProducto");
-                String distribuidor = resultSet.getString("nombreDistribuidor");
-                String categoriaProducto = resultSet.getString("nombreCategoria");
+                String distribuidor = resultSet.getString("Distribuidor");
+                String categoriaProducto = resultSet.getString("Categoria");
 
-                productos.add(new Productos (productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProducto));
+                productos.add(new Producto (productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProducto));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

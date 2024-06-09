@@ -37,7 +37,8 @@ import javafx.scene.input.TransferMode;
 import org.jeremyarevalo.dao.Conexion;
 import org.jeremyarevalo.model.CategoriaProductos;
 import org.jeremyarevalo.model.Distribuidores;
-import org.jeremyarevalo.model.Productos;
+import org.jeremyarevalo.model.Producto;
+import org.jeremyarevalo.report.GenerarReportes;
 import org.jeremyarevalo.system.Main;
 
 /**
@@ -55,7 +56,7 @@ public class MenuProductosController implements Initializable {
     private List<File> files = null;
     
     @FXML
-    Button btnGuardar7, btnRegresar7, btnVaciar7, btnBuscar7;
+    Button btnGuardar7, btnRegresar7, btnVaciar7, btnBuscar7, btnVerProductos;
     @FXML
     TextField tfProductoId, tfNomProducto, tfCanStock, tfPrecioVenUnitario, tfPrecioVenMayor, tfPrecioCompra, tfBuscar1;
     @FXML
@@ -88,7 +89,7 @@ public class MenuProductosController implements Initializable {
         }else if(event.getSource() == btnVaciar7){
             vaciarCampossss();
         }else if(event.getSource() == btnBuscar7){
-            Productos producto = buscarProductos();
+            Producto producto = buscarProductos();
             if(producto != null){
                 tblProductos.getItems().clear();
                 lblNombreProducto.setText(producto.getNombreProducto());
@@ -96,16 +97,18 @@ public class MenuProductosController implements Initializable {
                 Image image = new Image(file);
                 imgMostrar.setImage(image);
                 tblProductos.getItems().add(buscarProductos());
-                colProId.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("productoId"));
-                colNomPro.setCellValueFactory(new PropertyValueFactory<Productos, String>("nombreProducto"));
-                colDesPro.setCellValueFactory(new PropertyValueFactory<Productos, String>("descripcionProducto"));
-                colCanStock.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("cantidadStock"));
-                colPreVenU.setCellValueFactory(new PropertyValueFactory<Productos, Double>("precioVentaUnitario"));
-                colPreVenM.setCellValueFactory(new PropertyValueFactory<Productos, Double>("precioVentaMayor"));
-                colPreCompra.setCellValueFactory(new PropertyValueFactory<Productos, Double>("precioCompra"));
-                colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Productos, String>("nombreDistribuidor"));
-                colCatProductoId.setCellValueFactory(new PropertyValueFactory<Productos, String>("nombreCategoria"));
+                colProId.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("productoId"));
+                colNomPro.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreProducto"));
+                colDesPro.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
+                colCanStock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("cantidadStock"));
+                colPreVenU.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaUnitario"));
+                colPreVenM.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaMayor"));
+                colPreCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
+                colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreDistribuidor"));
+                colCatProductoId.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreCategoria"));
             }
+        }else if(event.getSource() == btnVerProductos){
+            GenerarReportes.getInstance().generarProductos();
         }
         }catch(Exception e){
             e.printStackTrace();
@@ -158,22 +161,22 @@ public class MenuProductosController implements Initializable {
     
     public void cargarDatossss(){
         tblProductos.setItems(listarProductos());
-        colProId.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("productoId"));
-        colNomPro.setCellValueFactory(new PropertyValueFactory<Productos, String>("nombreProducto"));
-        colDesPro.setCellValueFactory(new PropertyValueFactory<Productos, String>("descripcionProducto"));
-        colCanStock.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("cantidadStock"));
-        colPreVenU.setCellValueFactory(new PropertyValueFactory<Productos, Double>("precioVentaUnitario"));
-        colPreVenM.setCellValueFactory(new PropertyValueFactory<Productos, Double>("precioVentaMayor"));
-        colPreCompra.setCellValueFactory(new PropertyValueFactory<Productos, Double>("precioCompra"));
-        colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Productos, String>("nombreDistribuidor"));
-        colCatProductoId.setCellValueFactory(new PropertyValueFactory<Productos, String>("nombreCategoria"));
+        colProId.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("productoId"));
+        colNomPro.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreProducto"));
+        colDesPro.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
+        colCanStock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("cantidadStock"));
+        colPreVenU.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaUnitario"));
+        colPreVenM.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaMayor"));
+        colPreCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
+        colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreDistribuidor"));
+        colCatProductoId.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreCategoria"));
     }
     
     public int obtenerIndexDistribuidores(){
         int index = 0;
         for(int i = 0 ; i <= cmbDistribuidorId.getItems().size() ; i++){
         String distribuidorCmb = cmbDistribuidorId.getItems().get(i).toString();
-        String productosTbl =((Productos)tblProductos.getSelectionModel().getSelectedItem()).getNombreDistribuidor();
+        String productosTbl =((Producto)tblProductos.getSelectionModel().getSelectedItem()).getNombreDistribuidor();
         if(distribuidorCmb.equals(productosTbl)){
             index = i;
             break;
@@ -272,8 +275,8 @@ public class MenuProductosController implements Initializable {
         return FXCollections.observableList(categoriaProductos);
     }
     
-    public ObservableList<Productos> listarProductos() {
-        ArrayList<Productos> productos = new ArrayList<>();
+    public ObservableList<Producto> listarProductos() {
+        ArrayList<Producto> productos = new ArrayList<>();
         try {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_listarProductos()";
@@ -289,10 +292,10 @@ public class MenuProductosController implements Initializable {
                 double precioVentaMayor = resultSet.getDouble("precioVentaMayor");
                 double precioCompra = resultSet.getDouble("precioCompra");
                 Blob imagenProducto = resultSet.getBlob("imagenProducto");
-                String distribuidor = resultSet.getString("nombreDistribuidor");
-                String categoriaProducto = resultSet.getString("nombreCategoria");
+                String distribuidor = resultSet.getString("Distribuidor");
+                String categoriaProducto = resultSet.getString("Categoria");
 
-                productos.add(new Productos (productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProducto));
+                productos.add(new Producto (productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProducto));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -380,8 +383,8 @@ public class MenuProductosController implements Initializable {
         }
     }
     
-    public Productos buscarProductos(){
-        Productos productos = null;
+    public Producto buscarProductos(){
+        Producto productos = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_buscarProductos(?)";
@@ -401,7 +404,7 @@ public class MenuProductosController implements Initializable {
                 String distribuidor = resultSet.getString("nombreDistribuidor");
                 String categoriaProducto = resultSet.getString("nombreCategoria");
                 
-                productos = (new Productos(productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProducto));
+                productos = (new Producto(productoId, nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoriaProducto));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

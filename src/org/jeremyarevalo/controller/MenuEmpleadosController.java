@@ -28,7 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.jeremyarevalo.dao.Conexion;
 import org.jeremyarevalo.dto.EmpleadoDTO;
 import org.jeremyarevalo.model.Cargos;
-import org.jeremyarevalo.model.Empleados;
+import org.jeremyarevalo.model.Empleado;
 import org.jeremyarevalo.system.Main;
 import org.jeremyarevalo.utils.SuperKinalAlert;
 
@@ -63,12 +63,12 @@ public class MenuEmpleadosController implements Initializable {
             stage.formEmpleadosView(1);
         }
         else if(event.getSource() == btnEditar3){
-            EmpleadoDTO.getEmpleadoDTO().setEmpleados((Empleados)tblEmpleados.getSelectionModel().getSelectedItem());
+            EmpleadoDTO.getEmpleadoDTO().setEmpleados((Empleado)tblEmpleados.getSelectionModel().getSelectedItem());
             stage.formEmpleadosView(2);
         }
         else if(event.getSource() == btnEliminar3){
             if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(405).get() == ButtonType.OK){
-                int empId = ((Empleados)tblEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId();
+                int empId = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId();
                 eliminarEmpleado(empId);
                 cargarrDatos();
             }    
@@ -79,14 +79,14 @@ public class MenuEmpleadosController implements Initializable {
                 cargarrDatos();
             }else{
                 tblEmpleados.getItems().add(buscarEmpleado());
-                colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleados, Integer>("empleadoId"));
-                colNomEmpleado.setCellValueFactory(new PropertyValueFactory<Empleados, String>("nombreEmpleado"));
-                colApeEmpleado.setCellValueFactory(new PropertyValueFactory<Empleados, String>("apellidoEmpleado"));
-                colSueldo.setCellValueFactory(new PropertyValueFactory<Empleados, Double>("sueldo"));
-                colHorEntrada.setCellValueFactory(new PropertyValueFactory<Empleados, String>("horaEntrada"));
-                colHorSalida.setCellValueFactory(new PropertyValueFactory<Empleados, String>("horaSalida"));
-                colCargoId.setCellValueFactory(new PropertyValueFactory<Empleados, String>("cargos"));
-                colEncargadoId.setCellValueFactory(new PropertyValueFactory<Empleados, String>("encargado"));
+                colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleado, Integer>("empleadoId"));
+                colNomEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreEmpleado"));
+                colApeEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("apellidoEmpleado"));
+                colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, Double>("sueldo"));
+                colHorEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaEntrada"));
+                colHorSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaSalida"));
+                colCargoId.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargos"));
+                colEncargadoId.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargado"));
             }
         }
         else if(event.getSource() == btnVaciar2){
@@ -96,14 +96,14 @@ public class MenuEmpleadosController implements Initializable {
     
     public void cargarrDatos(){
         tblEmpleados.setItems(listarEmpleados());
-        colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleados, Integer>("empleadoId"));
-        colNomEmpleado.setCellValueFactory(new PropertyValueFactory<Empleados, String>("nombreEmpleado"));
-        colApeEmpleado.setCellValueFactory(new PropertyValueFactory<Empleados, String>("apellidoEmpleado"));
-        colSueldo.setCellValueFactory(new PropertyValueFactory<Empleados, Double>("sueldo"));
-        colHorEntrada.setCellValueFactory(new PropertyValueFactory<Empleados, Time>("horaEntrada"));
-        colHorSalida.setCellValueFactory(new PropertyValueFactory<Empleados, Time>("horaSalida"));
-        colCargoId.setCellValueFactory(new PropertyValueFactory<Empleados, String>("cargos"));
-        colEncargadoId.setCellValueFactory(new PropertyValueFactory<Empleados, String>("encargado"));
+        colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleado, Integer>("empleadoId"));
+        colNomEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreEmpleado"));
+        colApeEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("apellidoEmpleado"));
+        colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, Double>("sueldo"));
+        colHorEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, Time>("horaEntrada"));
+        colHorSalida.setCellValueFactory(new PropertyValueFactory<Empleado, Time>("horaSalida"));
+        colCargoId.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargos"));
+        colEncargadoId.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargado"));
         tblEmpleados.getSortOrder().add(colEmpleadoId);
     }
     
@@ -114,7 +114,7 @@ public class MenuEmpleadosController implements Initializable {
     }
     
     public void cargarDatosEditarr(){
-        Empleados em = (Empleados)tblEmpleados.getSelectionModel().getSelectedItem();
+        Empleado em = (Empleado)tblEmpleados.getSelectionModel().getSelectedItem();
         if(em != null){
             tfEmpleadoId.setText(Integer.toString(em.getEmpleadoId()));
             cmbEncargados.getSelectionModel().select(0);
@@ -127,7 +127,7 @@ public class MenuEmpleadosController implements Initializable {
         int index = 0;
         for(int i = 0 ; i <= cmbCargos.getItems().size() ; i++){
         String cargosCmb = cmbCargos.getItems().get(i).toString();
-        String cargosTbl =((Empleados)tblEmpleados.getSelectionModel().getSelectedItem()).getCargos();
+        String cargosTbl =((Empleado)tblEmpleados.getSelectionModel().getSelectedItem()).getCargos();
         if(cargosCmb.equals(cargosTbl)){
             index = i;
             break;
@@ -137,8 +137,8 @@ public class MenuEmpleadosController implements Initializable {
         return index;   
     }
     
-    public ObservableList<Empleados> listarEmpleados(){
-        ArrayList<Empleados> empleados = new ArrayList<>();
+    public ObservableList<Empleado> listarEmpleados(){
+        ArrayList<Empleado> empleados = new ArrayList<>();
         
         try{
             conexion = Conexion.getInstance().obtenerConexion();
@@ -156,7 +156,7 @@ public class MenuEmpleadosController implements Initializable {
                 String cargos = resultSet.getString("cargo");
                 String encargadoId = resultSet.getString("encargado");
                 
-                empleados.add(new Empleados(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargos, encargadoId));
+                empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargos, encargadoId));
             }
             
         }catch(SQLException e){
@@ -177,6 +177,39 @@ public class MenuEmpleadosController implements Initializable {
             }
         }
         return FXCollections.observableList(empleados);
+    }
+    
+    public ObservableList<Empleado> listarEncargados(){
+        ArrayList<Empleado> encargados = new ArrayList<>();
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_listarEncargados()";
+            statement = conexion.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                int empleadoId = resultSet.getInt("empleadoId");
+                String nombreEmpleado = resultSet.getString("nombreEmpleado");
+                String encargado = resultSet.getString("nombreEmpleado");
+                encargados.add(new Empleado(empleadoId, nombreEmpleado, encargado));
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(resultSet != null){
+                    resultSet.close();
+                }
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return FXCollections.observableList(encargados);
     }
     
     public ObservableList<Cargos> listarCargos(){
@@ -240,8 +273,8 @@ public class MenuEmpleadosController implements Initializable {
     
    
     
-    public Empleados buscarEmpleado(){
-        Empleados empleados = null;
+    public Empleado buscarEmpleado(){
+        Empleado empleados = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_buscarEmpleados(?)";
@@ -259,7 +292,7 @@ public class MenuEmpleadosController implements Initializable {
                 String cargos = resultSet.getString("cargo");
                 String encargadoId = resultSet.getString("encargado");
                 
-                empleados = (new Empleados(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargos, encargadoId));
+                empleados = (new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargos, encargadoId));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -287,7 +320,7 @@ public class MenuEmpleadosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cargarrDatos();
         cmbCargos.setItems(listarCargos());
-        cmbEncargados.setItems(listarEmpleados());
+        cmbEncargados.setItems(listarEncargados());
     }    
 
     public Main getStage() {

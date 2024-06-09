@@ -21,7 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.jeremyarevalo.dao.Conexion;
-import org.jeremyarevalo.model.Empleados;
+import org.jeremyarevalo.model.Empleado;
 import org.jeremyarevalo.model.NivelAcceso;
 import org.jeremyarevalo.system.Main;
 import org.jeremyarevalo.utils.PasswordUtils;
@@ -41,7 +41,7 @@ public class MenuRegistroController implements Initializable {
     @FXML
     TextField tfUser, tfPassword;
     @FXML
-    Button btnRegistrar, btnAgrEmpleado;
+    Button btnRegistrar, btnAgrEmpleado, btnCancelar2;
     @FXML
     ComboBox cmbNivelA, cmbEmpleadoo;
     /**
@@ -60,6 +60,8 @@ public class MenuRegistroController implements Initializable {
             stage.menuLoginView();
         }else if(event.getSource() == btnAgrEmpleado){
             stage.formEmpleadosView(3);
+        }else if(event.getSource() == btnCancelar2){
+            stage.menuLoginView();
         }
     }
     
@@ -99,8 +101,8 @@ public class MenuRegistroController implements Initializable {
         return FXCollections.observableArrayList(nivelesAcceso);
     }
     
-    public ObservableList<Empleados> listarEmpleados(){
-        ArrayList<Empleados> empleados = new ArrayList<>();
+    public ObservableList<Empleado> listarEmpleados(){
+        ArrayList<Empleado> empleados = new ArrayList<>();
         
         try{
             conexion = Conexion.getInstance().obtenerConexion();
@@ -118,7 +120,7 @@ public class MenuRegistroController implements Initializable {
                 String cargos = resultSet.getString("cargo");
                 String encargadoId = resultSet.getString("encargado");
                 
-                empleados.add(new Empleados(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargos, encargadoId));
+                empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargos, encargadoId));
             }
             
         }catch(SQLException e){
@@ -149,7 +151,7 @@ public class MenuRegistroController implements Initializable {
             statement.setString(1, tfUser.getText());
             statement.setString(2, PasswordUtils.getInstance().encrytedPassword(tfPassword.getText()));
             statement.setInt(3, ((NivelAcceso)cmbNivelA.getSelectionModel().getSelectedItem()).getNivelAccesoId());
-            statement.setInt(4, ((Empleados)cmbEmpleadoo.getSelectionModel().getSelectedItem()).getEmpleadoId());
+            statement.setInt(4, ((Empleado)cmbEmpleadoo.getSelectionModel().getSelectedItem()).getEmpleadoId());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());

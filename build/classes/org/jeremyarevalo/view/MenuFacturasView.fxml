@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuFacturasController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuFacturasController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -27,14 +27,18 @@
             <TableColumn fx:id="colFacturaId" prefWidth="70.0" text="Factura Id" />
           <TableColumn fx:id="colFecha" prefWidth="110.0" text="Fecha" />
           <TableColumn fx:id="colHora" prefWidth="110.0" text="Hora" />
-            <TableColumn fx:id="colCliente" prefWidth="150.0" text="Cliente" />
-            <TableColumn fx:id="colEmpleado" prefWidth="150.0" text="Empleado" />
-            <TableColumn fx:id="colTotal" prefWidth="71.0" text="Total" />
+            <TableColumn fx:id="colCliente" prefWidth="84.0" text="Cliente" />
+            <TableColumn fx:id="colEmpleado" prefWidth="115.0" text="Empleado" />
+            <TableColumn fx:id="colTotal" prefWidth="86.0" text="Total" />
+            <TableColumn fx:id="colProducto" prefWidth="86.0" text="Producto" />
+            <TableColumn fx:id="colProducto1" prefWidth="86.0" text="Producto" />
         </columns>
       </TableView>
       <Button fx:id="btnGuardar" layoutX="20.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="78.0" text="Guardar" />
       <Button fx:id="btnRegresar" layoutX="20.0" layoutY="499.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="78.0" text="Regresar" />
       <Button fx:id="btnVaciar" layoutX="115.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="78.0" text="Vaciar" />
       <Button fx:id="btnEliminar" layoutX="115.0" layoutY="499.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="78.0" text="Eliminar" />
+      <ComboBox fx:id="cmbProducto" layoutX="481.0" layoutY="39.0" prefHeight="32.0" prefWidth="163.0" promptText="productos" />
+      <Button fx:id="btnVerFactura" layoutX="59.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="78.0" text="Ver Factura" />
    </children>
 </AnchorPane>

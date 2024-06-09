@@ -24,8 +24,14 @@
       <TextField fx:id="tfSueldo" layoutX="25.0" layoutY="325.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="139.0" />
       <TextField fx:id="tfHoraEntrada" layoutX="25.0" layoutY="392.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="139.0" />
       <TextField fx:id="tfHoraSalida" layoutX="25.0" layoutY="458.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="139.0" />
-      <TextField fx:id="tfEncargadoId" layoutX="210.0" layoutY="269.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="139.0" />
-      <TextField fx:id="tfCargoId" layoutX="210.0" layoutY="207.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="139.0" />
+      <TextField fx:id="tfEncargadoId" layoutX="210.0" layoutY="269.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="139.0" promptText="ingrese solo el id (numero)">
+         <font>
+            <Font size="10.0" />
+         </font></TextField>
+      <TextField fx:id="tfCargoId" layoutX="210.0" layoutY="207.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="139.0" promptText="ingrese solo el id (numero)">
+         <font>
+            <Font size="10.0" />
+         </font></TextField>
       <GridPane layoutX="231.0" layoutY="329.0" prefHeight="127.0" prefWidth="110.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

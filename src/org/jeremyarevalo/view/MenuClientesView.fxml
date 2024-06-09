@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuClientesController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jeremyarevalo.controller.MenuClientesController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -58,7 +58,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Reportes" GridPane.rowIndex="3">
+            <Button fx:id="btnReporte" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="98.0" style="-fx-background-radius: 15;" text="Reportes" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>

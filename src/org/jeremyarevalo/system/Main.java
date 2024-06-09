@@ -28,7 +28,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setTitle("Super Kinal APP");
-        menuLoginView();
+        menuPrincipalView();
         stage.show();
     }
     

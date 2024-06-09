@@ -20,7 +20,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import org.jeremyarevalo.dao.Conexion;
 import org.jeremyarevalo.dto.EmpleadoDTO;
-import org.jeremyarevalo.model.Empleados;
+import org.jeremyarevalo.model.Empleado;
 import org.jeremyarevalo.system.Main;
 import org.jeremyarevalo.utils.SuperKinalAlert;
 
@@ -43,7 +43,11 @@ public class FormEmpleadosController implements Initializable {
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnCancelar5){
-            stage.menuEmpleadosView();
+            if(op == 3){
+                stage.menuRegistroView();
+            }else{
+                stage.menuEmpleadosView();
+            }
             EmpleadoDTO.getEmpleadoDTO().setEmpleados(null);
         }else if(event.getSource() == btnGuardar5){
             if(op == 1){
@@ -77,7 +81,7 @@ public class FormEmpleadosController implements Initializable {
         }
     }
     
-    public void cargarDatos(Empleados empleados){
+    public void cargarDatos(Empleado empleados){
         tfEmpleadoId.setText(Integer.toString(empleados.getEmpleadoId()));
         tfNomEmpleado.setText(empleados.getNombreEmpleado());
         tfApeEmpleado.setText(empleados.getApellidoEmpleado());

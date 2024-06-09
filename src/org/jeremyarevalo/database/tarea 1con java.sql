@@ -1,4 +1,4 @@
-drop database if exists superKinalIN5CV;
+-- drop database if exists superKinalIN5CV;
  
 create database if not exists superKinalIN5CV;
  
@@ -111,14 +111,17 @@ create table Facturas(
 	facturaId int not null auto_increment,
     fecha date not null,
     hora time not null,
+    total decimal(10,2),
     clienteId int not null,
     empleadoId int not null,
-    total decimal(10,2),
-    primary key PK_facturaId(facturaId),
-    constraint FK_Facturas_Clientes foreign key Facturas(clienteId)
+    productoId int not null,
+    primary key PK_facturaId (facturaId),
+    constraint FK_Facturas_Clientes foreign key (clienteId)
 		references Clientes(clienteId),
-	constraint FK_Facturas_Empleados foreign key Facturas(empleadoId)
-		references Empleados(empleadoId)
+	constraint FK_Facturas_Empleados foreign key (empleadoId)
+		references Empleados(empleadoId),
+	constraint FK_Facturas_Productos foreign key (productoId)
+		references Productos(productoId)
 );
 
 create table DetalleFacturas(
@@ -170,6 +173,17 @@ insert into Clientes(nombre, apellido, telefono, direccion, nit) values
 	('Elkyn', 'Samayoa', '6666-6666', 'Salgoloteo el Chiquito', '5489634-0'),
 	('Jorge', 'Peralta', '3333-3333', 'Chinique Quiche', '2778945-0');
     
+insert into NivelesAcceso(nivelAcceso) values
+	('Admin'),
+	('Usuario');
+    
+insert into Cargos(nombreCargo, descripcionCargo) values
+	('Adminitrador', 'Es administrador');
+    
+insert into Empleados(nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargoId, encargadoId) values
+	('Jeremy', 'Arevalo', 3550.50, '07:00:00', '05:00:00', 1, null);
+    
+    
 -- select * from Clientes;
 -- select * from Cargos;
 -- select * from TicketSoportes;
@@ -179,3 +193,5 @@ insert into Clientes(nombre, apellido, telefono, direccion, nit) values
 -- select * from Usuarios;
 -- select * from nivelesAcceso;
 -- select * from Facturas;
+-- select * from DetalleFacturas;
+-- select * from CategoriaProductos;
